@@ -366,7 +366,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-3 bg-gradient-to-r from-neon-blue to-neon-purple hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] text-white text-xs font-bold uppercase tracking-widest rounded transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-4 bg-gradient-to-r from-neon-blue to-neon-purple hover:shadow-[0_0_25px_rgba(0,240,255,0.45)] text-white text-sm font-bold uppercase tracking-widest rounded transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer"
                   >
                     {loading ? (
                       <>

@@ -35,8 +35,8 @@ function App() {
             {/* Main Page Content */}
             <main className="relative z-10">
               <Hero />
-              <Services />
               <Projects />
+              <Services />
               <Pricing />
               <Trust />
               <Contact />

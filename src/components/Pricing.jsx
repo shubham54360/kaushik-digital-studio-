@@ -4,7 +4,7 @@ import { agencyConfig } from '../config/agency';
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24 relative overflow-hidden bg-bg-darker/40">
+    <section id="pricing" className="py-16 relative overflow-hidden bg-bg-darker/40">
       {/* Background soft ambient glows */}
       <div className="absolute top-[20%] right-[-10%] w-[350px] h-[350px] bg-neon-purple/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[20%] left-[-10%] w-[350px] h-[350px] bg-neon-blue/5 rounded-full blur-[100px] pointer-events-none" />
@@ -12,7 +12,7 @@ export default function Pricing() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Heading */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <div className="flex flex-col items-center text-center mb-10">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +102,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-12 text-[10px] sm:text-xs text-slate-500 font-mono tracking-wider max-w-xl mx-auto"
+          className="text-center mt-8 text-[10px] sm:text-xs text-slate-500 font-mono tracking-wider max-w-xl mx-auto"
         >
           *Domain, hosting and third-party service charges are paid separately by the client.
         </motion.div>

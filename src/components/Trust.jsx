@@ -3,14 +3,14 @@ import { agencyConfig } from '../config/agency';
 
 export default function Trust() {
   return (
-    <section id="trust" className="py-24 relative overflow-hidden bg-bg-darker/60">
+    <section id="trust" className="py-16 relative overflow-hidden bg-bg-darker/60">
       {/* Glow shapes */}
       <div className="absolute top-[30%] left-[-10%] w-[350px] h-[350px] bg-neon-blue/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Heading */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <div className="flex flex-col items-center text-center mb-10">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ export default function Trust() {
         </div>
 
         {/* Grid of Trust Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {agencyConfig.trust.map((point, i) => {
             const IconComponent = point.icon;
             return (

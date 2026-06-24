@@ -12,7 +12,7 @@ export default function Hero() {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden">
+    <section id="home" className="relative pt-24 lg:pt-32 pb-12 overflow-hidden">
       {/* Soft backlights */}
       <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-neon-blue/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[10%] right-[-10%] w-[450px] h-[450px] bg-neon-purple/10 rounded-full blur-[140px] pointer-events-none" />
@@ -40,7 +40,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-white mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-white mb-4 leading-tight"
           >
             Professional Websites <br />
             For <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">Local Businesses</span>
@@ -50,7 +50,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-sm sm:text-base md:text-lg text-slate-300 max-w-xl mb-8 leading-relaxed font-sans"
+            className="text-sm sm:text-base md:text-lg text-slate-300 max-w-xl mb-3 leading-relaxed font-sans"
           >
             {agencyConfig.brand.tagline}
           </motion.p>
@@ -59,7 +59,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="text-xs sm:text-sm text-slate-400 max-w-xl mb-8 leading-relaxed font-sans"
+            className="text-xs sm:text-sm text-slate-400 max-w-xl mb-5 leading-relaxed font-sans"
           >
             Helping coaching institutes, cafes, restaurants, libraries, dairy businesses, salons, gyms and local businesses establish a powerful online presence and attract more customers.
           </motion.p>
@@ -69,7 +69,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-10"
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-6"
           >
             <a
               href="#projects"

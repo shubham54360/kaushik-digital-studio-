@@ -8,6 +8,7 @@ import kaushikDairyImg from '../assets/kaushik_dairy.png';
 import achieversLibraryImg from '../assets/achievers_library.png';
 import forestCafeImg from '../assets/forest_cafe.png';
 import collegeFinderImg from '../assets/college_finder.png';
+import weddingRsvpImg from '../assets/wedding_rsvp.png';
 
 export const agencyConfig = {
   // Brand details
@@ -28,7 +29,7 @@ export const agencyConfig = {
     emailSubject: 'Website%20Inquiry',
   },
 
-  // Why Choose Us trust factors (8 points)
+  // Why Choose Us trust factors (6 points)
   trust: [
     {
       icon: Rocket,
@@ -39,8 +40,8 @@ export const agencyConfig = {
     },
     {
       icon: Smartphone,
-      title: 'Mobile Responsive Design',
-      desc: 'Ensuring your website looks beautiful, loads quickly, and operates smoothly on iPhones, Androids, tablets, and desktops.',
+      title: 'Responsive Design',
+      desc: 'Ensuring your website looks beautiful, loads quickly, and operates smoothly on smartphones, tablets, and desktops.',
       accent: 'text-neon-purple',
       hoverBorder: 'hover:border-neon-purple/30',
     },
@@ -59,90 +60,64 @@ export const agencyConfig = {
       hoverBorder: 'hover:border-emerald-500/30',
     },
     {
-      icon: TrendingUp,
-      title: 'Business Focused Design',
-      desc: 'Creating interfaces tailored specifically to generate inquiries, catalog your offerings, and turn traffic into paying clients.',
-      accent: 'text-neon-blue',
-      hoverBorder: 'hover:border-neon-blue/30',
-    },
-    {
       icon: Search,
-      title: 'Google Friendly Structure',
+      title: 'Google Friendly',
       desc: 'Optimized with modern SEO standards, metadata, and fast loading metrics so local customers can find you on Google Search.',
       accent: 'text-neon-purple',
       hoverBorder: 'hover:border-neon-purple/30',
     },
     {
-      icon: MessageSquare,
-      title: 'Direct Communication',
-      desc: 'No middleman or sales reps. Deal directly with Shubham Kaushik for absolute transparency, design updates, and support.',
-      accent: 'text-neon-pink',
-      hoverBorder: 'hover:border-neon-pink/30',
-    },
-    {
       icon: Palette,
-      title: 'Modern Professional UI',
-      desc: 'Applying premium 2026 aesthetics, custom glassmorphism panels, high-end layouts, and clean visual typography.',
+      title: 'Professional Design',
+      desc: 'Applying premium aesthetics, custom glassmorphism panels, high-end layouts, and clean visual typography.',
       accent: 'text-neon-blue',
       hoverBorder: 'hover:border-neon-blue/30',
     },
   ],
 
-  // Services offered (9 cards)
+  // Services offered (7 core services)
   services: [
     {
       icon: Building,
       title: 'Business Websites',
-      desc: 'High-converting custom sites designed to showcase your services, build brand trust, and generate direct customer inquiries.',
+      desc: 'High-converting custom sites designed to showcase services, build brand trust, and generate direct inquiries.',
       color: 'text-neon-blue',
     },
     {
       icon: BookOpen,
-      title: 'Coaching Institute Websites',
-      desc: 'Structured portals showing courses directories, batch timings, staff profiles, and student registration forms.',
+      title: 'Coaching Websites',
+      desc: 'Structured portals showing course directories, batch timings, staff profiles, and student registration forms.',
       color: 'text-neon-purple',
     },
     {
       icon: Library,
       title: 'Library Websites',
-      desc: 'Professional platforms designed to let students explore sitting spaces, check study facilities, and book memberships.',
+      desc: 'Professional platforms designed to let students explore study facilities and book sitting spaces or memberships.',
       color: 'text-neon-pink',
     },
     {
       icon: Coffee,
-      title: 'Restaurant & Cafe Websites',
-      desc: 'Immersive cafe sites featuring menu presentation, table bookings, customer engagement, and local SEO integrations.',
+      title: 'Cafe Websites',
+      desc: 'Immersive layouts showcasing cafe menus, booking tables, customer reviews, and local search integrations.',
       color: 'text-neon-blue',
-    },
-    {
-      icon: UserCheck,
-      title: 'Portfolio Websites',
-      desc: 'High-fidelity digital portfolios designed to display skills, build credibility, and generate booking inquiries.',
-      color: 'text-neon-purple',
     },
     {
       icon: Rocket,
       title: 'Landing Pages',
-      desc: 'Single-page layouts optimized for product launches, ad campaigns, lead captures, and high visitor conversions.',
-      color: 'text-neon-pink',
+      desc: 'Highly focused single-page layouts optimized for product launches, ad campaigns, and maximizing conversion rates.',
+      color: 'text-neon-purple',
     },
     {
       icon: RefreshCw,
       title: 'Website Redesign',
-      desc: 'Upgrading older websites with modern cinematic visual styling, mobile responsiveness, and faster load times.',
-      color: 'text-neon-blue',
-    },
-    {
-      icon: Server,
-      title: 'Website Deployment',
-      desc: 'Seamless domain hosting configurations, server setups (Netlify, Vercel), and SSL security integrations.',
-      color: 'text-neon-purple',
+      desc: 'Upgrading older sites with premium visual aesthetics, clean mobile layouts, and modern load speeds.',
+      color: 'text-neon-pink',
     },
     {
       icon: MapPin,
-      title: 'Google Business Profile Setup Assistance',
-      desc: 'Optimizing local business profiles to rank higher in local map packs, link to your website, and gather reviews.',
-      color: 'text-neon-pink',
+      title: 'Google Business Profile Assistance',
+      desc: 'Optimizing local business listings to rank higher on Google Maps, drive local search clicks, and connect to your site.',
+      color: 'text-neon-blue',
     },
   ],
 
@@ -231,15 +206,15 @@ export const agencyConfig = {
       category: 'Cafe & Restaurant Website',
     },
     {
-      title: 'College Finder',
-      desc: 'Interactive college finder and discovery platform helping students search, filter, and compare universities based on courses, fees, and location.',
-      techs: ['React', 'Vite', 'Tailwind CSS'],
-      webLink: 'https://college-discoveryplatform.netlify.app/',
-      image: collegeFinderImg,
+      title: 'Wedding Invitation Website',
+      desc: 'Elegant digital wedding invitation experience with RSVP functionality and modern interactive design.',
+      techs: ['HTML5', 'CSS3', 'Tailwind CSS', 'Framer Motion'],
+      webLink: 'https://wedding-invitation-rsvp.netlify.app',
+      image: weddingRsvpImg,
       color: 'from-indigo-500/20 to-blue-500/20',
       borderColor: 'group-hover:border-indigo-500/40 group-hover:shadow-[0_0_25px_rgba(99,102,241,0.25)]',
       badgeColor: 'text-indigo-400 border-indigo-400/20 bg-indigo-400/5',
-      category: 'Education Website',
+      category: 'Event Website',
     },
   ],
 

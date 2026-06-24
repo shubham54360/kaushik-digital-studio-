@@ -6,7 +6,7 @@ import { agencyConfig } from '../config/agency';
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const filters = ['All', 'Business Website', 'Education Website', 'Cafe & Restaurant Website'];
+  const filters = ['All', 'Business Website', 'Education Website', 'Cafe & Restaurant Website', 'Event Website'];
 
   // Match the filter against project categories
   const filteredProjects = activeFilter === 'All'
@@ -14,7 +14,7 @@ export default function Projects() {
     : agencyConfig.projects.filter(proj => proj.category === activeFilter);
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden bg-bg-darker/50">
+    <section id="projects" className="py-16 relative overflow-hidden bg-bg-darker/50">
       <div className="absolute top-[10%] left-[-5%] w-[400px] h-[400px] bg-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[10%] right-[-5%] w-[450px] h-[450px] bg-neon-purple/5 rounded-full blur-[140px] pointer-events-none" />
 

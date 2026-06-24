@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+
+  --color-bg-darker: #020005;
+  --color-bg-dark: #06030e;
+  --color-bg-card: #0d091e;
+  --color-neon-blue: #00f0ff;
+  --color-neon-purple: #9d4edd;
+  --color-neon-pink: #ff007f;
+  
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s infinite alternate;
+  --animate-text-glow: text-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.1), 0 0 20px rgba(157, 78, 221, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(157, 78, 221, 0.3);
+  }
+}
+
+@keyframes text-glow {
+  0% {
+    text-shadow: 0 0 4px rgba(0, 240, 255, 0.2), 0 0 10px rgba(157, 78, 221, 0.2);
+  }
+  100% {
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.6), 0 0 24px rgba(157, 78, 221, 0.6);
+  }
+}
+
+/* Custom Base Styles */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg-darker);
+  color: #e2e8f0;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Custom Cinematic Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-neon-blue), var(--color-neon-purple));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neon-blue);
+  box-shadow: 0 0 10px var(--color-neon-blue);
+}
+
+/* Custom selection */
+::selection {
+  background: rgba(0, 240, 255, 0.3);
+  color: #fff;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: rgba(13, 9, 30, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(19, 14, 42, 0.6);
+  border-color: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 10px 40px 0 rgba(0, 240, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+/* Animated gradient text */
+.text-neon-gradient {
+  background: linear-gradient(135deg, var(--color-neon-blue) 0%, var(--color-neon-purple) 50%, var(--color-neon-pink) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Scanline Overlay for Cyberpunk look */
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 9999;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Hide default Vite page borders */
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border: none !important;
+  text-align: left !important;
+  min-height: 100vh;
+}

@@ -6,12 +6,7 @@ export default function Services() {
     'Coaching Institutes',
     'Libraries',
     'Cafes',
-    'Restaurants',
-    'Dairy Businesses',
-    'Salons',
-    'Gyms',
-    'Medical Clinics',
-    'Local Businesses'
+    'Restaurants'
   ];
 
   const containerVariants = {

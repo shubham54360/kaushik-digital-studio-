@@ -55,27 +55,18 @@ export default function Hero() {
             {agencyConfig.brand.tagline}
           </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="text-xs sm:text-sm text-slate-400 max-w-xl mb-5 leading-relaxed font-sans"
-          >
-            Helping coaching institutes, cafes, restaurants, libraries, dairy businesses, salons, gyms and local businesses establish a powerful online presence and attract more customers.
-          </motion.p>
-
           {/* Action buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
             className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-6"
           >
             <a
               href="#projects"
               className="px-5 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-xs font-bold uppercase tracking-wider rounded hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all duration-300 flex items-center gap-2 group"
             >
-              View Projects
+              VIEW PROJECTS
               <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
             </a>
 
@@ -83,7 +74,7 @@ export default function Hero() {
               href="#contact"
               className="px-5 py-3 bg-white/5 border border-white/10 hover:border-neon-purple/50 text-white text-xs font-bold uppercase tracking-wider rounded hover:bg-white/10 transition-all duration-300 flex items-center gap-2"
             >
-              Start Project
+              START PROJECT
               <Send className="h-3.5 w-3.5" />
             </a>
 
@@ -93,7 +84,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="px-5 py-3 bg-emerald-600/10 border border-emerald-500/20 hover:border-emerald-500 hover:bg-emerald-600/20 text-emerald-400 text-xs font-bold uppercase tracking-wider rounded transition-all duration-300 flex items-center gap-2"
             >
-              WhatsApp Me
+              WHATSAPP ME
               <MessageCircle className="h-3.5 w-3.5" />
             </a>
           </motion.div>

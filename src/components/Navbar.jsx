@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { agencyConfig } from '../config/agency';
+import logoImg from '../assets/logo.png';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,9 +44,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo and Branding */}
         <a href="#home" className="flex items-center gap-2.5 group">
-          <div className="h-9 w-9 rounded border border-neon-blue/30 flex items-center justify-center relative overflow-hidden bg-white/5">
-            <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="text-neon-blue font-bold font-mono group-hover:scale-110 transition-transform duration-300">SK</span>
+          <div className="h-9 flex items-center justify-center relative overflow-hidden">
+            <img src={logoImg} alt="KDS Logo" className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300" />
           </div>
           <div className="flex flex-col">
             <span className="font-display font-extrabold text-sm sm:text-base tracking-widest text-white leading-tight uppercase">

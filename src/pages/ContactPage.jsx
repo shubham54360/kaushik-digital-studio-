@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Mail, Send, CheckCircle, Loader2, Phone, Clock, MapPin } from 'lucide-react';
+import { MessageCircle, Mail, Send, CheckCircle, Loader2, Phone, Clock } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { agencyConfig } from '../config/agency';
 
@@ -189,7 +189,7 @@ export default function ContactPage() {
         {/* Form and Hours/Map Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto items-stretch">
           {/* Left Side: Contact Form */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-8">
             <div className="luxury-card p-6 sm:p-8 rounded-xl relative h-full flex flex-col justify-center">
               <AnimatePresence mode="wait">
                 {success ? (
@@ -338,19 +338,19 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right Side: Hours & Map */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+          {/* Right Side: Hours & Info */}
+          <div className="lg:col-span-4 space-y-6 flex flex-col justify-start">
             {/* Hours panel */}
             <div className="luxury-card p-6 rounded-xl flex gap-4 items-start">
               <Clock className="h-5.5 w-5.5 text-neon-blue flex-shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-white font-display font-bold text-sm sm:text-base mb-2">Business Hours</h3>
                 <div className="space-y-1.5 text-xs text-slate-400 font-mono">
-                  <div className="flex justify-between w-60 gap-4">
+                  <div className="flex justify-between w-full gap-4">
                     <span>Monday - Saturday:</span>
                     <span className="text-white">9:00 AM - 7:00 PM</span>
                   </div>
-                  <div className="flex justify-between w-60 gap-4">
+                  <div className="flex justify-between w-full gap-4">
                     <span>Sunday:</span>
                     <span className="text-neon-pink">Closed</span>
                   </div>
@@ -358,19 +358,12 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Map panel */}
-            <div className="luxury-card rounded-xl overflow-hidden flex-1 min-h-[220px] relative">
-              <div className="absolute top-4 left-4 z-20 bg-bg-darker/90 backdrop-blur border border-white/10 rounded px-3 py-1 flex items-center gap-1.5 text-[10px] font-mono text-slate-300">
-                <MapPin className="h-3.5 w-3.5 text-neon-pink" />
-                Delhi, India
-              </div>
-              <iframe
-                title="Google Map location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224345.97130283085!2d77.06889754707172!3d28.527280327318042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0xd39f60fe496458b!2sDelhi%20NCR%2C%20India!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                className="w-full h-full border-none filter invert grayscale opacity-60 hover:opacity-85 transition-opacity"
-                allowFullScreen=""
-                loading="lazy"
-              />
+            {/* Quick response note */}
+            <div className="luxury-card p-6 rounded-xl border border-white/5 bg-gradient-to-br from-neon-blue/5 to-transparent">
+              <h4 className="text-white font-display font-bold text-sm mb-2">Quick Response Guarantee</h4>
+              <p className="text-slate-400 text-xs leading-relaxed font-sans">
+                We review inquiries within 2 hours. For direct consultations or urgent pricing, use our WhatsApp channel.
+              </p>
             </div>
           </div>
         </div>

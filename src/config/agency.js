@@ -20,7 +20,7 @@ export const agencyConfig = {
   // Contact details
   contacts: {
     phone: '9540311172',
-    email: 'sk1513217@gmail.com',
+    email: 'digitalstudiokaushik@gmail.com',
     whatsappNum: '9540311172',
     whatsappLink: 'https://wa.me/919540311172?text=Hello%20Shubham,%20I%20would%20like%20to%20discuss%20a%20website%20project.',
     emailSubject: 'Website%20Inquiry',

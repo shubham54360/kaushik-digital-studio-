@@ -459,7 +459,7 @@ export default function Home() {
             Let's build a premium website designed to showcase your business and convert visitors into paying clients.
           </p>
           <Link
-            to="/contact"
+            to="/packages"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded hover:shadow-[0_0_25px_rgba(0,210,255,0.45)] hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer"
           >
             Get Started

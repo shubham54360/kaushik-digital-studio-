@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { agencyConfig } from '../config/agency';
@@ -22,13 +23,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'Offer', href: '#special-offer' },
-    { name: 'Packages', href: '#pricing' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'Packages', path: '/packages' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' }
   ];
 
   const nameParts = agencyConfig.brand.name.split(' ');
@@ -38,12 +38,12 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
-        scrolled ? 'py-4 bg-bg-darker/70 backdrop-blur-md border-b border-white/5' : 'py-6 bg-transparent'
+        scrolled ? 'py-4 bg-bg-darker/80 backdrop-blur-md border-b border-white/5' : 'py-6 bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo and Branding */}
-        <a href="#home" className="flex items-center gap-2.5 group">
+        <Link to="/" className="flex items-center gap-2.5 group">
           <div className="h-9 flex items-center justify-center relative overflow-hidden">
             <img src={logoImg} alt="KDS Logo" className="h-full w-auto object-contain group-hover:scale-105 transition-transform duration-300" />
           </div>
@@ -52,36 +52,40 @@ export default function Navbar() {
               {firstWord} <span className="text-neon-purple">{restOfName}</span>
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-5">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a
-                  href={link.href}
-                  className="font-sans text-[10px] uppercase tracking-widest text-slate-300 hover:text-neon-blue transition-colors duration-300 font-semibold"
+                <NavLink
+                  to={link.path}
+                  className={({ isActive }) =>
+                    `font-sans text-[10px] uppercase tracking-widest transition-colors duration-300 font-semibold ${
+                      isActive ? 'text-neon-blue font-bold' : 'text-slate-300 hover:text-neon-blue'
+                    }`
+                  }
                 >
                   {link.name}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
 
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="flex items-center gap-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[10px] font-bold uppercase tracking-wider px-4 py-2.5 rounded hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all duration-300 group"
           >
             Start Project
             <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform duration-200" />
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-slate-300 hover:text-white transition-colors duration-300"
+          className="md:hidden p-2 text-slate-300 hover:text-white transition-colors duration-300 cursor-pointer"
         >
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -100,24 +104,28 @@ export default function Navbar() {
             <ul className="flex flex-col px-6 py-4 gap-4">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <NavLink
+                    to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className="block font-sans text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-neon-blue transition-colors duration-300 py-2 border-b border-white/5"
+                    className={({ isActive }) =>
+                      `block font-sans text-xs font-semibold uppercase tracking-wider py-2 border-b border-white/5 transition-colors duration-300 ${
+                        isActive ? 'text-neon-blue font-bold' : 'text-slate-300 hover:text-neon-blue'
+                      }`
+                    }
                   >
                     {link.name}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
               <li className="pt-2">
-                <a
-                  href="#contact"
+                <Link
+                  to="/contact"
                   onClick={() => setIsOpen(false)}
                   className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[10px] font-bold uppercase py-3 rounded hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all duration-300"
                 >
                   Start Project
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>

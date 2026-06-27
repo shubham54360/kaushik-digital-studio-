@@ -1,10 +1,113 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, HelpCircle, ArrowRight, Layers, Box, Cpu, ChevronDown, CheckCircle } from 'lucide-react';
+import { Check, HelpCircle, ArrowRight, Layers, Box, Cpu, ChevronDown, CheckCircle, Loader2, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 
 export default function PackagesPage() {
   const [activeFaq, setActiveFaq] = useState(null);
+
+  // Form State for Custom Quote Request
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    honeypot: ''
+  });
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const validate = () => {
+    let tempErrors = {};
+    if (!formData.name.trim()) tempErrors.name = 'Full Name is required';
+    if (!formData.email.trim()) {
+      tempErrors.email = 'Email Address is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      tempErrors.email = 'Email Address is invalid';
+    }
+    if (!formData.phone.trim()) {
+      tempErrors.phone = 'Phone Number is required';
+    }
+    if (!formData.message.trim()) tempErrors.message = 'Message is required';
+
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    if (formData.honeypot) {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setSuccess(true);
+        resetForm();
+      }, 1000);
+      return;
+    }
+
+    setLoading(true);
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_placeholder';
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_placeholder';
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'public_key_placeholder';
+
+    const templateParams = {
+      name: formData.name,
+      from_name: formData.name,
+      email: formData.email,
+      reply_to: formData.email,
+      phone: formData.phone,
+      business_name: 'N/A',
+      message: `[CUSTOM QUOTE REQUEST FROM PACKAGES PAGE]\n\n${formData.message}`,
+      to_email: 'sk1513217@gmail.com'
+    };
+
+    if (serviceId === 'service_placeholder' || templateId === 'template_placeholder' || publicKey === 'public_key_placeholder') {
+      setTimeout(() => {
+        setLoading(false);
+        setSuccess(true);
+        resetForm();
+      }, 1500);
+    } else {
+      emailjs.send(serviceId, templateId, templateParams, publicKey)
+        .then(() => {
+          setLoading(false);
+          setSuccess(true);
+          resetForm();
+        })
+        .catch((error) => {
+          setLoading(false);
+          console.error('EmailJS send error:', error);
+          setErrors({ form: 'Failed to send inquiry. Please try again or WhatsApp us.' });
+        });
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
+      honeypot: ''
+    });
+    setTimeout(() => {
+      setSuccess(false);
+    }, 5000);
+  };
 
   const packages = [
     {
@@ -178,7 +281,7 @@ export default function PackagesPage() {
           })}
         </div>
 
-        {/* Custom Business Solution Card */}
+        {/* Custom Website Solutions Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -187,37 +290,68 @@ export default function PackagesPage() {
           className="max-w-6xl mx-auto luxury-card p-8 sm:p-10 rounded-xl relative overflow-hidden mb-24"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-neon-pink/5 via-transparent to-transparent pointer-events-none" />
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left Column: Details */}
+            <div className="lg:col-span-6">
               <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-neon-pink px-2 py-0.5 rounded border border-neon-pink/20 bg-neon-pink/5 mb-3.5 inline-block">
-                Tailored Systems
+                Tailored Solutions
               </span>
-              <h3 className="text-white font-display font-extrabold text-2xl sm:text-3xl mb-3">
-                {customPlan.name}
+              <h3 className="text-white font-display font-extrabold text-2xl sm:text-3xl mb-4">
+                Custom Website Solutions
               </h3>
-              <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6 font-sans">
-                {customPlan.desc}
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 font-sans">
+                Need something beyond our standard packages? We build fully customized websites tailored to your business requirements. Every project is quoted based on its features, complexity, and development time.
               </p>
-              <div className="grid grid-cols-2 gap-3.5">
-                {customPlan.features.map((feat) => (
+              
+              <div className="p-4 rounded border border-white/5 bg-white/5 mb-6">
+                <h4 className="text-[10px] font-mono font-bold text-slate-300 uppercase tracking-widest mb-1.5">
+                  Pricing Notice
+                </h4>
+                <p className="text-[11px] text-slate-400 leading-relaxed font-sans">
+                  Standard packages cover only the listed features. Advanced features and custom integrations are priced separately after discussing your project requirements.
+                </p>
+              </div>
+
+              <button
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-gradient-to-r from-neon-pink to-neon-purple text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded hover:shadow-[0_0_20px_rgba(255,0,127,0.35)] hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer"
+              >
+                Request a Custom Quote
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+
+            {/* Right Column: Custom features list */}
+            <div className="lg:col-span-6 border-t lg:border-t-0 lg:border-l border-white/5 pt-6 lg:pt-0 lg:pl-8">
+              <h4 className="text-xs font-mono font-bold text-neon-blue uppercase tracking-widest mb-4">
+                Example Custom Features
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  'Payment Gateway Integration',
+                  'Auto Email Confirmation',
+                  'Contact Form Integration',
+                  'Booking & Appointment System',
+                  'Admin Dashboard',
+                  'User Login & Authentication',
+                  'Database Integration',
+                  'Custom API Integration',
+                  'WhatsApp Integration',
+                  'Multi-step Forms',
+                  'SEO Optimization',
+                  'Blog System',
+                  'Analytics Integration',
+                  'E-commerce Features',
+                  'Custom Business Logic'
+                ].map((feat) => (
                   <div key={feat} className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-neon-pink flex-shrink-0" />
-                    <span className="text-xs text-slate-300 font-sans">{feat}</span>
+                    <span className="text-[11px] sm:text-xs text-slate-350 font-sans">{feat}</span>
                   </div>
                 ))}
               </div>
-            </div>
-
-            <div className="lg:col-span-5 flex flex-col items-center justify-center border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-8 text-center flex-shrink-0">
-              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block mb-1">Pricing Starts From</span>
-              <span className="text-4xl font-display font-black text-white mb-6">{customPlan.price}</span>
-              <Link
-                to="/contact"
-                state={{ selectedContext: 'Custom Business Solution (Starting ₹6999)', message: 'Hello Shubham, I would like to consult about building a Custom Business Solution for my business.' }}
-                className="w-full max-w-xs py-3.5 bg-gradient-to-r from-neon-pink to-neon-purple text-white text-xs font-bold uppercase tracking-widest rounded hover:shadow-[0_0_20px_rgba(255,0,127,0.35)] transition-all duration-300 block"
-              >
-                Request Consultation
-              </Link>
             </div>
           </div>
         </motion.div>
@@ -493,8 +627,137 @@ export default function PackagesPage() {
             ))}
           </div>
         </div>
+        {/* Contact / Custom Quote Request Section */}
+        <div id="contact" className="max-w-4xl mx-auto mb-24 pt-12">
+          <div className="flex flex-col items-center text-center mb-10">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-neon-purple font-bold mb-3 block">
+              Inquiry Form
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white">
+              Request a Custom Quote
+            </h2>
+            <p className="text-slate-400 text-xs sm:text-sm max-w-lg mt-2 leading-relaxed font-sans">
+              Describe your project requirements, integrations, or specific business goals to receive a personalized quote.
+            </p>
+            <div className="w-12 h-[2px] bg-gradient-to-r from-neon-blue to-neon-purple mt-4" />
+          </div>
 
+          <div className="luxury-card p-6 sm:p-8 rounded-2xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 via-transparent to-transparent pointer-events-none" />
+            
+            <AnimatePresence mode="wait">
+              {success ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="flex flex-col items-center justify-center py-12 text-center"
+                >
+                  <CheckCircle className="h-14 w-14 text-emerald-400 mb-4 animate-bounce" />
+                  <h3 className="text-lg font-display font-bold text-white mb-2">
+                    Inquiry Received!
+                  </h3>
+                  <p className="text-slate-400 text-xs sm:text-sm max-w-sm font-sans">
+                    Thank you. We will evaluate your custom integrations list and follow up with a detailed quotation within 2 hours.
+                  </p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4 text-xs font-sans">
+                  {errors.form && (
+                    <div className="p-3.5 rounded border border-red-500/20 bg-red-500/5 text-red-400 text-center font-mono">
+                      {errors.form}
+                    </div>
+                  )}
 
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {/* Name */}
+                    <div>
+                      <label className="text-slate-400 text-[9px] font-mono uppercase tracking-widest block mb-1.5 font-bold">Full Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="w-full bg-black/40 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-neon-purple transition-colors"
+                      />
+                      {errors.name && <span className="text-[10px] text-red-400 mt-1 block">{errors.name}</span>}
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label className="text-slate-400 text-[9px] font-mono uppercase tracking-widest block mb-1.5 font-bold">Email Address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full bg-black/40 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-neon-purple transition-colors"
+                      />
+                      {errors.email && <span className="text-[10px] text-red-400 mt-1 block">{errors.email}</span>}
+                    </div>
+
+                    {/* Phone */}
+                    <div>
+                      <label className="text-slate-400 text-[9px] font-mono uppercase tracking-widest block mb-1.5 font-bold">Phone Number</label>
+                      <input
+                        type="text"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="w-full bg-black/40 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-neon-purple transition-colors"
+                      />
+                      {errors.phone && <span className="text-[10px] text-red-400 mt-1 block">{errors.phone}</span>}
+                    </div>
+                  </div>
+
+                  {/* Honeypot */}
+                  <input
+                    type="text"
+                    name="honeypot"
+                    value={formData.honeypot}
+                    onChange={handleInputChange}
+                    className="hidden"
+                  />
+
+                  {/* Message */}
+                  <div>
+                    <label className="text-slate-400 text-[9px] font-mono uppercase tracking-widest block mb-1.5 font-bold">Project Details (Custom Requirements)</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      rows="4"
+                      placeholder="Please specify which integrations you require (e.g. Razorpay payment, user auth, dynamic map feeds)..."
+                      className="w-full bg-black/40 border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-neon-purple transition-colors resize-none placeholder-slate-650"
+                    />
+                    {errors.message && <span className="text-[10px] text-red-400 mt-1 block">{errors.message}</span>}
+                  </div>
+
+                  {/* Submit button */}
+                  <div className="flex justify-end pt-2">
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded hover:shadow-[0_0_20px_rgba(0,210,255,0.4)] transition-all duration-300 cursor-pointer disabled:opacity-50"
+                    >
+                      {loading ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin text-white" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-4 w-4 text-white" />
+                          Send Custom Quote Request
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
 
       </div>
     </div>

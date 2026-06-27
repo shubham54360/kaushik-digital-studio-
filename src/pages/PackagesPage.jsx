@@ -1,43 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Check, HelpCircle, ArrowRight, Layers, Box, Cpu, ChevronDown, CheckCircle, Loader2, Send, CreditCard, Settings, Calendar, Bot, Smartphone, MessageCircle, Mail, Zap, QrCode } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import { agencyConfig } from '../config/agency';
-
-function NumberCounter({ value, duration = 1.5, prefix = '', suffix = '' }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
-    const end = parseInt(value, 10);
-    if (start === end) return;
-
-    let totalMiliseconds = duration * 1000;
-    let incrementTime = Math.max(Math.floor(totalMiliseconds / end), 25);
-    
-    let timer = setInterval(() => {
-      start += Math.ceil(end / (totalMiliseconds / incrementTime));
-      if (start >= end) {
-        clearInterval(timer);
-        setCount(end);
-      } else {
-        setCount(start);
-      }
-    }, incrementTime);
-
-    return () => clearInterval(timer);
-  }, [isInView, value, duration]);
-
-  return (
-    <span ref={ref}>
-      {prefix}{count.toLocaleString()}{suffix}
-    </span>
-  );
-}
 
 export default function PackagesPage() {
   // Form State for Custom Quote Request
@@ -275,7 +241,7 @@ export default function PackagesPage() {
                     <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider ml-1.5">/ One-Time</span>
                   </div>
 
-                  <ul className="space-y-3 mb-8 text-xs text-slate-450 font-sans">
+                  <ul className="space-y-3 mb-8 text-xs text-slate-455 font-sans">
                     {pkg.features.map((feat) => (
                       <li key={feat} className="flex items-start gap-2">
                         <Check className={`h-4 w-4 ${pkg.accentColor} flex-shrink-0 mt-0.5`} />
@@ -300,7 +266,7 @@ export default function PackagesPage() {
         {/* 2. Custom Features & Add-ons Section */}
         <div className="max-w-6xl mx-auto mb-20 relative">
           <div className="flex flex-col items-center text-center mb-10">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-neon-pink font-bold mb-3 block">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-neon-pink font-bold block mb-3">
               Advanced Add-ons
             </span>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-white">
@@ -396,7 +362,7 @@ export default function PackagesPage() {
                 </div>
                 <h3 className="text-white font-display font-bold text-sm mb-0.5">AI Chatbot</h3>
                 <span className="text-[9px] font-mono font-bold text-emerald-400 uppercase tracking-wider block mb-3">
-                  Starting from ₹4,005
+                  Starting from ₹4,000
                 </span>
                 <p className="text-slate-400 text-[11px] leading-relaxed font-sans">
                   An intelligent chatbot that can answer FAQs, capture leads, and assist visitors 24/7.
@@ -442,7 +408,7 @@ export default function PackagesPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           style={{ background: 'rgba(18, 18, 24, 0.92)' }}
-          className="max-w-6xl mx-auto p-8 sm:p-12 rounded-[28px] relative overflow-hidden mb-20 border border-white/8 shadow-[0_10px_35px_rgba(0,0,0,0.4)]"
+          className="max-w-6xl mx-auto p-8 sm:p-10 rounded-[28px] relative overflow-hidden mb-20 border border-white/8 shadow-[0_10px_35px_rgba(0,0,0,0.4)]"
         >
           {/* Subtle left/right border glows */}
           <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[250px] h-[250px] bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none -z-10" />
@@ -450,45 +416,42 @@ export default function PackagesPage() {
 
           {/* Floating animated badge */}
           <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex flex-col items-center bg-black/60 backdrop-blur-md px-4 py-2 sm:px-5 sm:py-2.5 rounded-2xl border border-transparent bg-clip-padding before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-blue-500 before:to-purple-650 before:rounded-2xl before:-z-10 before:content-[''] shadow-[0_0_20px_rgba(59,130,246,0.15)]"
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20"
           >
-            <span className="text-[9px] font-mono font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-              FREE BONUS
-            </span>
-            <span className="text-white text-xs sm:text-sm font-display font-black mt-0.5">
-              Worth ₹4,000+
+            <span className="text-[9px] sm:text-[10px] font-mono font-black uppercase tracking-widest text-white px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-650 shadow-[0_0_15px_rgba(59,130,246,0.25)] border border-white/10 backdrop-blur-md">
+              🎁 FREE BONUS
             </span>
           </motion.div>
 
           {/* Heading */}
           <div className="flex flex-col items-center text-center mb-10 relative">
-            {/* Very soft radial light behind heading */}
+            {/* Very soft radial glow behind heading */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[80px] bg-blue-500/5 rounded-full blur-[40px] pointer-events-none -z-10" />
             
-            <span className="text-[10px] uppercase tracking-[0.25em] text-neon-blue font-mono font-bold mb-2 block">
+            <span className="text-[10px] uppercase tracking-[0.25em] text-cyan-400 font-mono font-bold mb-2 block">
               COMPLIMENTARY BENEFITS
             </span>
             <h2 className="text-2xl sm:text-4xl font-display font-black tracking-tight text-white mb-3 text-center flex flex-col items-center leading-tight">
               <span>🎁 Everything Included <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-purple-500 font-black">FREE</span></span>
-              <span className="text-lg sm:text-2xl font-bold text-slate-300 mt-1">With Every Website Package</span>
+              <span className="text-lg sm:text-2xl font-bold text-white mt-1">With Every Website Package</span>
             </h2>
-            <p className="text-[#C5C7D0] text-xs sm:text-sm max-w-xl mt-3 font-sans leading-relaxed">
-              Every website package includes premium business features at absolutely no extra cost. <br className="hidden sm:inline" />
-              Save thousands while getting everything required to launch your business online.
+            <p className="text-slate-350 text-xs sm:text-sm max-w-xl mt-3 font-sans leading-relaxed">
+              Every website package includes premium business essentials at absolutely no additional cost. <br className="hidden sm:inline" />
+              Everything you need to launch your business online is already included.
             </p>
           </div>
 
           {/* 3x2 Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             {[
-              { title: 'Mobile Responsive', desc: 'Looks perfect on every device.', icon: Smartphone, color: 'text-cyan-400', worth: '₹699', borderGlow: 'hover:border-cyan-500/30' },
-              { title: 'WhatsApp Integration', desc: 'Direct customer communication.', icon: MessageCircle, color: 'text-emerald-400', worth: '₹499', borderGlow: 'hover:border-emerald-500/30' },
-              { title: 'Contact Form', desc: 'Receive enquiries directly on your email.', icon: Mail, color: 'text-purple-400', worth: '₹499', borderGlow: 'hover:border-purple-500/30' },
-              { title: 'Fast Loading', desc: 'Optimized for speed.', icon: Zap, color: 'text-orange-400', worth: '₹699', borderGlow: 'hover:border-orange-500/30' },
-              { title: 'Basic SEO Setup', desc: 'Ready for Google Search.', icon: CheckCircle, color: 'text-blue-400', worth: '₹999', borderGlow: 'hover:border-blue-500/30' },
-              { title: 'Free QR Code', desc: 'Professional QR for your website.', icon: QrCode, color: 'text-pink-400', worth: '₹399', borderGlow: 'hover:border-pink-500/30' }
+              { title: 'Mobile Responsive Design', desc: 'Works perfectly on every device.', icon: Smartphone, color: 'text-cyan-400', borderGlow: 'hover:border-cyan-500/30' },
+              { title: 'WhatsApp Integration', desc: 'Direct communication with customers.', icon: MessageCircle, color: 'text-emerald-400', borderGlow: 'hover:border-emerald-500/30' },
+              { title: 'Contact Form', desc: 'Receive enquiries directly on your email.', icon: Mail, color: 'text-purple-400', borderGlow: 'hover:border-purple-500/30' },
+              { title: 'Fast Loading', desc: 'Optimized for performance.', icon: Zap, color: 'text-orange-400', borderGlow: 'hover:border-orange-500/30' },
+              { title: 'Basic SEO Setup', desc: 'Ready for Google Search.', icon: CheckCircle, color: 'text-blue-400', borderGlow: 'hover:border-blue-500/30' },
+              { title: 'Free QR Code', desc: 'Professional QR Code linked to your website.', icon: QrCode, color: 'text-pink-400', borderGlow: 'hover:border-pink-500/30' }
             ].map((feat, i) => {
               const Icon = feat.icon;
               return (
@@ -499,48 +462,33 @@ export default function PackagesPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.05 }}
                   style={{ background: 'rgba(20, 20, 28, 0.95)' }}
-                  className={`p-5 rounded-[20px] border border-white/8 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_0_20px_rgba(255,255,255,0.03)] hover:-translate-y-1 hover:scale-[1.01] min-h-[160px] ${feat.borderGlow}`}
+                  className={`p-5 rounded-[20px] border border-white/8 transition-all duration-300 flex items-start gap-4 hover:shadow-[0_0_20px_rgba(255,255,255,0.03)] hover:-translate-y-1 hover:scale-[1.01] min-h-[115px] ${feat.borderGlow}`}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 shadow-inner group-hover:brightness-110">
-                      <Icon className={`h-5 w-5 ${feat.color}`} />
-                    </div>
-                    <div>
-                      <h3 className="text-white font-display font-bold text-sm mb-1">{feat.title}</h3>
-                      <p className="text-[#AEB5C4] text-xs leading-relaxed font-sans">{feat.desc}</p>
-                    </div>
+                  <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-inner">
+                    <Icon className={`h-5 w-5 ${feat.color}`} />
                   </div>
-                  <div className="flex items-center justify-start mt-2">
-                    <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
-                      Worth {feat.worth}
-                    </span>
+                  <div>
+                    <h3 className="text-white font-display font-bold text-sm mb-1">{feat.title}</h3>
+                    <p className="text-[#B8C2CC] text-xs leading-relaxed font-sans">{feat.desc}</p>
                   </div>
                 </motion.div>
               );
             })}
           </div>
 
-          {/* Total Value Section (Bottom Banner) */}
+          {/* Bottom Value Banner */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-6 sm:p-8 rounded-[20px] text-center relative bg-clip-padding before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-cyan-500/30 before:via-purple-500/30 before:to-pink-500/30 before:rounded-[20px] before:-z-10 before:content-[''] bg-black/60 shadow-[0_15px_30px_rgba(0,0,0,0.5)] mb-8 flex flex-col items-center justify-center"
+            className="p-5 sm:p-6 rounded-[16px] text-center relative bg-clip-padding before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-cyan-500/30 before:via-purple-500/30 before:to-pink-500/30 before:rounded-[16px] before:-z-10 before:content-[''] bg-black/60 shadow-[0_10px_25px_rgba(0,0,0,0.4)] mb-8"
           >
-            <span className="text-[10px] font-mono font-bold text-neon-blue uppercase tracking-widest mb-1.5">
-              🎉 Total Complimentary Value
-            </span>
-            <div className="text-3xl sm:text-5xl font-display font-black text-white mb-2 leading-none flex items-center justify-center">
-              <NumberCounter value={4000} duration={1.8} prefix="₹" suffix="+" />
-            </div>
-            <p className="text-slate-300 font-sans text-xs sm:text-sm tracking-wide font-medium">
-              Included FREE with every website package.
+            <p className="text-white font-sans font-bold text-xs sm:text-sm tracking-wide relative z-10">
+              ✨ Every feature shown above is included with every website package.
             </p>
-            <div className="flex items-center justify-center gap-4 mt-4 text-[10px] font-mono text-slate-500">
-              <span className="flex items-center gap-1"><Check className="h-3 w-3 text-emerald-400" /> No Hidden Charges</span>
-              <span className="h-3 w-[1px] bg-white/10" />
-              <span className="flex items-center gap-1"><Check className="h-3 w-3 text-emerald-400" /> No Extra Setup Fees</span>
-            </div>
+            <p className="text-slate-400 font-mono text-[10px] sm:text-xs tracking-wider uppercase font-bold mt-1.5 relative z-10">
+              No Hidden Charges • No Extra Setup Fees • No Surprise Costs
+            </p>
           </motion.div>
 
           {/* Trust Badges */}

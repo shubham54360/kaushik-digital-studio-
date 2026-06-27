@@ -455,10 +455,9 @@ export default function Home() {
           <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white mb-4">
             Ready To Grow Your Business Online?
           </h2>
-          <p className="text-slate-400 text-xs sm:text-sm max-w-md mx-auto mb-8 leading-relaxed">
+          <p className="text-slate-400 text-xs sm:text-sm max-w-md mx-auto mb-0 leading-relaxed">
             Let's build a premium website designed to showcase your business and convert visitors into paying clients.
           </p>
-          
         </motion.div>
       </div>
     </div>

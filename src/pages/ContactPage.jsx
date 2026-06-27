@@ -149,7 +149,7 @@ export default function ContactPage() {
             return (
               <motion.div
                 key={opt.title}
-                className="glass-panel p-6 rounded-xl border border-white/5 bg-white/5 flex flex-col items-center text-center justify-between gap-4"
+                className="luxury-card p-6 rounded-xl flex flex-col items-center text-center justify-between gap-4"
               >
                 <div className="flex flex-col items-center gap-2">
                   <div className="h-9 w-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
@@ -177,7 +177,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto items-stretch">
           {/* Left Side: Contact Form */}
           <div className="lg:col-span-7">
-            <div className="glass-panel p-6 sm:p-8 rounded-xl border border-white/5 shadow-2xl relative h-full flex flex-col justify-center">
+            <div className="luxury-card p-6 sm:p-8 rounded-xl relative h-full flex flex-col justify-center">
               <AnimatePresence mode="wait">
                 {success ? (
                   <motion.div
@@ -310,7 +310,7 @@ export default function ContactPage() {
           {/* Right Side: Hours & Map */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             {/* Hours panel */}
-            <div className="glass-panel p-6 rounded-xl border border-white/5 flex gap-4 items-start">
+            <div className="luxury-card p-6 rounded-xl flex gap-4 items-start">
               <Clock className="h-5.5 w-5.5 text-neon-blue flex-shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-white font-display font-bold text-sm sm:text-base mb-2">Business Hours</h3>
@@ -328,7 +328,7 @@ export default function ContactPage() {
             </div>
 
             {/* Map panel */}
-            <div className="glass-panel rounded-xl border border-white/5 overflow-hidden flex-1 min-h-[220px] relative">
+            <div className="luxury-card rounded-xl overflow-hidden flex-1 min-h-[220px] relative">
               <div className="absolute top-4 left-4 z-20 bg-bg-darker/90 backdrop-blur border border-white/10 rounded px-3 py-1 flex items-center gap-1.5 text-[10px] font-mono text-slate-300">
                 <MapPin className="h-3.5 w-3.5 text-neon-pink" />
                 Delhi, India

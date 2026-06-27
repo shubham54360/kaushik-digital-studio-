@@ -96,7 +96,7 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className="glass-panel p-6 rounded-xl border border-white/5 flex gap-4 hover:border-white/10 transition-colors"
+                  className="luxury-card p-6 rounded-xl flex gap-4"
                 >
                   <div className="h-10 w-10 rounded bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
                     <Icon className={`h-5.5 w-5.5 ${val.color}`} />

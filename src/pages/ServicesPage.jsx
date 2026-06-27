@@ -56,7 +56,7 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="glass-panel p-6 sm:p-8 rounded-xl border border-white/5 relative overflow-hidden group hover:border-neon-blue/20 transition-all duration-300 flex flex-col justify-between"
+                className="luxury-card p-6 sm:p-8 rounded-xl relative overflow-hidden group flex flex-col justify-between"
               >
                 {/* Accent glow corner */}
                 <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/3 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -92,7 +92,7 @@ export default function ServicesPage() {
         </div>
 
         {/* Checklist of Interactive features */}
-        <div className="max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-2xl border border-white/5 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto luxury-card p-8 sm:p-12 rounded-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/5 via-transparent to-neon-pink/5" />
           
           <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white text-center mb-2">

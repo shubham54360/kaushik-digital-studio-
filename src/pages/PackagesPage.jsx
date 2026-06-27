@@ -131,7 +131,7 @@ export default function PackagesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`glass-panel p-8 rounded-xl relative flex flex-col justify-between transition-all duration-300 ${pkg.glow} border`}
+                className="luxury-card p-8 rounded-xl relative flex flex-col justify-between"
               >
                 {pkg.badge && (
                   <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[9px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10 shadow-lg">
@@ -181,7 +181,7 @@ export default function PackagesPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-6xl mx-auto glass-panel p-8 sm:p-10 rounded-xl border border-neon-pink/30 relative overflow-hidden mb-24 shadow-[0_0_30px_rgba(255,0,127,0.05)]"
+          className="max-w-6xl mx-auto luxury-card p-8 sm:p-10 rounded-xl relative overflow-hidden mb-24"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-neon-pink/5 via-transparent to-transparent pointer-events-none" />
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -223,7 +223,7 @@ export default function PackagesPage() {
           <h2 className="text-center font-display font-extrabold text-2xl text-white mb-10">
             Features Comparison Matrix
           </h2>
-          <table className="w-full text-left border-collapse text-xs sm:text-sm text-slate-300 min-w-[600px] glass-panel rounded-lg overflow-hidden border border-white/5">
+          <table className="w-full text-left border-collapse text-xs sm:text-sm text-slate-300 min-w-[600px] luxury-card rounded-lg overflow-hidden">
             <thead>
               <tr className="bg-white/5 text-[10px] font-mono uppercase tracking-wider text-slate-400 border-b border-white/10">
                 <th className="p-4 sm:p-5">Feature</th>
@@ -254,7 +254,7 @@ export default function PackagesPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, i) => (
-              <div key={step.title} className="glass-panel p-6 rounded-xl border border-white/5 relative">
+              <div key={step.title} className="luxury-card p-6 rounded-xl relative">
                 <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-neon-blue to-neon-purple opacity-70" />
                 <h3 className="text-white font-display font-bold text-sm sm:text-base mb-2">{step.title}</h3>
                 <p className="text-slate-400 text-xs leading-relaxed">{step.desc}</p>
@@ -272,7 +272,7 @@ export default function PackagesPage() {
             {faqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="glass-panel rounded-xl border border-white/5 overflow-hidden transition-all duration-300"
+                className="luxury-card rounded-xl overflow-hidden transition-all duration-300"
               >
                 <button
                   onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}

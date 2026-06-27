@@ -35,7 +35,7 @@ export default function ProjectsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`glass-panel rounded-2xl border border-white/5 relative overflow-hidden group transition-all duration-300 flex flex-col justify-between ${proj.borderColor}`}
+              className="luxury-card rounded-2xl relative overflow-hidden group flex flex-col justify-between"
             >
               <div>
                 {/* Screenshot Area */}

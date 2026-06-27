@@ -69,7 +69,7 @@ export default function SpecialOffer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto glass-panel p-6 sm:p-10 rounded-xl border border-neon-purple/35 relative overflow-hidden shadow-[0_0_50px_rgba(157,78,221,0.15)]"
+          className="max-w-3xl mx-auto luxury-card p-6 sm:p-10 rounded-xl relative overflow-hidden"
         >
           {/* Internal diagonal accent aura */}
           <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 via-transparent to-neon-pink/5 pointer-events-none" />

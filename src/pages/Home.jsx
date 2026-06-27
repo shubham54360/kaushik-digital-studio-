@@ -126,7 +126,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="glass-panel p-5 rounded border border-white/5 flex flex-col items-center text-center group hover:border-white/10 transition-colors"
+                className="luxury-card p-5 rounded flex flex-col items-center text-center group transition-all"
               >
                 <div className="h-9 w-9 rounded bg-white/5 border border-white/10 flex items-center justify-center mb-3">
                   <Icon className={`h-5 w-5 ${stat.color}`} />
@@ -165,7 +165,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="glass-panel p-6 rounded border border-white/5 hover:border-neon-blue/20 transition-all duration-300 flex flex-col justify-between"
+                className="luxury-card p-6 rounded flex flex-col justify-between"
               >
                 <div>
                   <div className="h-9 w-9 rounded border border-white/10 bg-white/5 flex items-center justify-center mb-4">
@@ -218,7 +218,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className={`glass-panel p-6 rounded border border-white/5 flex flex-col justify-between hover:border-${pkg.accentColor}/20 transition-all`}
+              className="luxury-card p-6 rounded flex flex-col justify-between"
             >
               <div>
                 <h3 className="text-white font-display font-bold text-sm sm:text-base mb-2">{pkg.name}</h3>
@@ -272,7 +272,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="glass-panel rounded border border-white/5 overflow-hidden group hover:border-neon-blue/20 transition-all duration-300"
+              className="luxury-card rounded-xl overflow-hidden group"
             >
               <div className="h-44 w-full overflow-hidden bg-black/40 relative">
                 <img
@@ -317,7 +317,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-panel p-8 sm:p-12 rounded-2xl border border-white/5 text-center relative overflow-hidden"
+          className="luxury-card p-8 sm:p-12 rounded-2xl text-center relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 via-transparent to-neon-purple/5" />
           <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white mb-4">

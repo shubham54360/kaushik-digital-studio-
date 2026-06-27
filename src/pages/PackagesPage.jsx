@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, HelpCircle, ArrowRight, Layers, Box, Cpu, ChevronDown, CheckCircle, Loader2, Send, CreditCard, Settings, Calendar, Bot } from 'lucide-react';
+import { Check, HelpCircle, ArrowRight, Layers, Box, Cpu, ChevronDown, CheckCircle, Loader2, Send, CreditCard, Settings, Calendar, Bot, Smartphone, MessageCircle, Mail, Zap, QrCode } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 
@@ -458,143 +458,97 @@ export default function PackagesPage() {
           </table>
         </div>
 
-        {/* Free Support Section */}
-        <div className="max-w-6xl mx-auto mb-24">
-          <div className="flex flex-col items-center text-center mb-12">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-neon-blue font-bold mb-3 block">
-              Complimentary Policy
+        {/* Included Free Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-6xl mx-auto luxury-card p-8 sm:p-12 rounded-[24px] relative overflow-hidden mb-24 border border-transparent bg-clip-padding before:absolute before:inset-0 before:p-[1.5px] before:bg-gradient-to-r before:from-neon-blue before:via-neon-purple before:to-neon-pink before:rounded-[24px] before:-z-10 before:content-[''] shadow-[0_0_50px_rgba(0,210,255,0.08)] bg-bg-darker/60"
+        >
+          {/* Spotlight background effect */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-full blur-[100px] pointer-events-none -z-10" />
+
+          {/* Floating animated "100% FREE" badge */}
+          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
+            <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-widest text-white px-3 py-1.5 rounded-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink shadow-[0_0_15px_rgba(0,210,255,0.4)] animate-pulse">
+              100% FREE
             </span>
-            <h2 className="text-3xl md:text-4xl font-display font-extrabold tracking-tight text-white">
-              Free Support Included With Every Website
+          </div>
+
+          {/* Heading */}
+          <div className="flex flex-col items-center text-center mb-10 relative">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-neon-blue font-bold mb-3 block">
+              Value Proposition
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-white flex items-center justify-center gap-2">
+              <span>🎁</span> Included Free With Every Website
             </h2>
-            <p className="text-slate-400 text-xs sm:text-base max-w-xl mt-3 font-sans">
-              Every website includes complimentary post-delivery support to ensure everything runs smoothly.
+            <p className="text-slate-400 text-xs sm:text-sm max-w-xl mt-3 font-sans leading-relaxed">
+              Every website package includes these premium features at absolutely no extra cost.
             </p>
-            <div className="w-12 h-[2px] bg-gradient-to-r from-neon-blue to-neon-purple mt-4" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {/* Starter Support */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="luxury-card p-6 rounded-xl relative flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-[9px] font-mono text-neon-blue uppercase tracking-widest block mb-1">Starter Website</span>
-                <h3 className="text-white font-display font-extrabold text-xl mb-3">15 Days Support</h3>
-                <ul className="space-y-2 text-[11px] text-slate-400 font-sans">
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-blue" /> Bug Fixes</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-blue" /> Text Updates</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-blue" /> Image Replacement</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-blue" /> Contact Details Update</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-blue" /> WhatsApp Link Update</li>
-                </ul>
-              </div>
-            </motion.div>
-
-            {/* Business Support */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="luxury-card p-6 rounded-xl relative flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-[9px] font-mono text-neon-purple uppercase tracking-widest block mb-1">Business Website</span>
-                <h3 className="text-white font-display font-extrabold text-xl mb-3">1 Month Support</h3>
-                <ul className="space-y-2 text-[11px] text-slate-400 font-sans">
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-purple" /> Everything in Starter</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-purple" /> Minor Content Updates</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-purple" /> Minor Design Adjustments</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-purple" /> Technical Assistance</li>
-                </ul>
-              </div>
-            </motion.div>
-
-            {/* Premium Support */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="luxury-card p-6 rounded-xl relative flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-[9px] font-mono text-neon-pink uppercase tracking-widest block mb-1">Premium Website</span>
-                <h3 className="text-white font-display font-extrabold text-xl mb-3">3 Months Support</h3>
-                <ul className="space-y-2 text-[11px] text-slate-400 font-sans">
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-pink" /> Priority Support</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-pink" /> Bug Fixes</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-pink" /> Content Updates</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-pink" /> Minor UI Improvements</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-pink" /> Technical Assistance</li>
-                </ul>
-              </div>
-            </motion.div>
-
-            {/* Custom Support */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="luxury-card p-6 rounded-xl relative flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-[9px] font-mono text-emerald-400 uppercase tracking-widest block mb-1">Custom Business</span>
-                <h3 className="text-white font-display font-extrabold text-xl mb-3">6 Months Support</h3>
-                <ul className="space-y-2 text-[11px] text-slate-400 font-sans">
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Priority Support</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Technical Assistance</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Bug Fixes</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Content Updates</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Minor Improvements</li>
-                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Business Guidance</li>
-                </ul>
-              </div>
-            </motion.div>
+          {/* 3x2 Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            {[
+              { title: 'Mobile Responsive', desc: 'Works perfectly on all devices.', icon: Smartphone, color: 'text-neon-blue' },
+              { title: 'WhatsApp Integration', desc: 'Direct chat with your customers.', icon: MessageCircle, color: 'text-emerald-400' },
+              { title: 'Contact Form', desc: 'Receive enquiries directly on your email.', icon: Mail, color: 'text-neon-purple' },
+              { title: 'Fast Loading', desc: 'Optimized for speed and performance.', icon: Zap, color: 'text-neon-pink' },
+              { title: 'Basic SEO Setup', desc: 'Ready for search engine indexing.', icon: CheckCircle, color: 'text-neon-blue' },
+              { title: 'Free QR Code', desc: 'A custom QR code linked to your website.', icon: QrCode, color: 'text-neon-purple' }
+            ].map((feat, i) => {
+              const Icon = feat.icon;
+              return (
+                <motion.div
+                  key={feat.title}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                  className="luxury-card p-5 rounded-[20px] border border-white/5 bg-black/30 hover:border-neon-blue/30 transition-all duration-300 flex items-start gap-4 hover:shadow-[0_0_20px_rgba(0,210,255,0.08)] hover:-translate-y-1 min-h-[110px]"
+                >
+                  <div className="h-9 w-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon className={`h-4.5 w-4.5 ${feat.color}`} />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-display font-bold text-sm mb-1">{feat.title}</h3>
+                    <p className="text-slate-400 text-xs leading-relaxed font-sans">{feat.desc}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          {/* Important Notice Glass Card */}
+          {/* Highlighted Banner */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="luxury-card p-6 sm:p-10 rounded-xl relative overflow-hidden mb-12"
+            className="p-5 sm:p-6 rounded-[16px] text-center bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink shadow-[0_0_25px_rgba(0,210,255,0.25)] mb-8 animate-pulse-glow"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 via-transparent to-transparent pointer-events-none" />
-            <h3 className="text-white font-display font-extrabold text-lg mb-6 border-b border-white/5 pb-3">Important Notice: Support Boundaries</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="text-emerald-400 font-mono text-xs uppercase tracking-widest font-bold mb-3">Support Includes:</h4>
-                <ul className="space-y-2 text-xs text-slate-300 font-sans">
-                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Bug Fixes</li>
-                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Content Updates</li>
-                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Image Replacement</li>
-                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Contact Information Changes</li>
-                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> WhatsApp Number Changes</li>
-                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Email Address Changes</li>
-                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Minor Layout Adjustments</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-neon-pink font-mono text-xs uppercase tracking-widest font-bold mb-3">Support Does NOT Include:</h4>
-                <ul className="space-y-2 text-xs text-slate-400 font-sans">
-                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> New Pages</li>
-                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> Complete Website Redesign</li>
-                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> Payment Gateway Added Later</li>
-                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> Admin Panel Development</li>
-                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> Large Feature Requests</li>
-                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> Major Design Changes</li>
-                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> New Custom Modules</li>
-                </ul>
-                <p className="text-[10px] text-slate-500 font-mono mt-4 italic">
-                  Note: These unsupported services require a separate custom quotation.
-                </p>
-              </div>
-            </div>
+            <p className="text-white font-sans font-bold text-xs sm:text-sm tracking-wide">
+              ✨ Every website we deliver includes these premium features completely FREE. No hidden charges. No extra setup fees.
+            </p>
           </motion.div>
-        </div>
+
+          {/* Trust Badge Row */}
+          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-[10px] sm:text-xs font-mono text-slate-500 uppercase tracking-widest">
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              ✓ <span className="text-slate-400">No Hidden Charges</span>
+            </span>
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              ✓ <span className="text-slate-400">Mobile Optimized</span>
+            </span>
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              ✓ <span className="text-slate-400">Business Ready</span>
+            </span>
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              ✓ <span className="text-slate-400">Professional Delivery</span>
+            </span>
+          </div>
+        </motion.div>
 
         {/* Website Maintenance Section */}
         <div className="max-w-6xl mx-auto mb-24">

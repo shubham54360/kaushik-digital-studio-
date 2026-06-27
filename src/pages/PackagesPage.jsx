@@ -71,10 +71,12 @@ export default function PackagesPage() {
   };
 
   const steps = [
-    { title: '1. Discovery & Planning', desc: 'We align on your requirements, color preferences, copy content, and final objectives.' },
-    { title: '2. Design Preview Mockup', desc: 'We build a design prototype draft and present it to you (fully customizable/adjustable).' },
-    { title: '3. Full Development', desc: 'Once the preview is approved, we write clean responsive code, configure APIs, maps, and SEO.' },
-    { title: '4. Testing & Launch', desc: 'We run performance benchmarks, secure SSL certifications, map your domain, and go live.' }
+    { title: '1. Requirement Discussion', desc: 'Consultation to align on business requirements, feature lists, and branding.' },
+    { title: '2. UI Design', desc: 'Crafting the visual layout mockups, color palettes, and typography structure.' },
+    { title: '3. Website Development', desc: 'Writing high-performance code, configuring integrations, and compiling build configurations.' },
+    { title: '4. Client Review', desc: 'Demonstrating draft previews on actual mobile, tablet, and desktop screens for feedback.' },
+    { title: '5. Website Launch', desc: 'Domain mapping, hosting deployment, final SEO indexing, and search engine integration.' },
+    { title: '6. Free Support', desc: 'Activating post-delivery complimentary support coverage (15 Days to 6 Months) for peace of mind.' }
   ];
 
   const faqs = [
@@ -481,7 +483,7 @@ export default function PackagesPage() {
           <h2 className="text-center font-display font-extrabold text-2xl text-white mb-12">
             Our Collaboration Process
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {steps.map((step, i) => (
               <div key={step.title} className="luxury-card p-6 rounded-xl relative">
                 <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-neon-blue to-neon-purple opacity-70" />
@@ -492,46 +494,7 @@ export default function PackagesPage() {
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-center font-display font-extrabold text-2xl text-white mb-10">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div
-                key={idx}
-                className="luxury-card rounded-xl overflow-hidden transition-all duration-300"
-              >
-                <button
-                  onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                  className="w-full p-5 text-left flex items-center justify-between text-white font-bold text-xs sm:text-sm cursor-pointer hover:bg-white/2 transition-colors"
-                >
-                  <span className="flex items-center gap-3">
-                    <HelpCircle className="h-4.5 w-4.5 text-neon-blue flex-shrink-0" />
-                    {faq.q}
-                  </span>
-                  <ChevronDown className={`h-4 w-4 text-slate-400 transition-transform duration-350 ${activeFaq === idx ? 'rotate-180' : ''}`} />
-                </button>
-                <AnimatePresence>
-                  {activeFaq === idx && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="border-t border-white/5 bg-black/20"
-                    >
-                      <p className="p-5 text-slate-400 text-xs sm:text-sm leading-relaxed font-sans">
-                        {faq.a}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
       </div>
     </div>

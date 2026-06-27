@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Mail, Phone, ArrowUp, MapPin } from 'lucide-react';
 import { agencyConfig } from '../config/agency';
 
@@ -29,9 +30,20 @@ export default function Footer() {
           </span>
         </div>
 
-        {/* Middle: Contact Info & Status */}
+        {/* Middle: Quick Links, Contact Info & Status */}
         <div className="flex flex-col items-center gap-3.5 text-center">
-          <div className="flex flex-col sm:flex-row items-center gap-6 text-xs font-mono text-slate-400">
+          {/* Quick links row */}
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[10px] font-mono uppercase tracking-wider text-slate-400">
+            <Link to="/" className="hover:text-neon-blue transition-colors">Home</Link>
+            <Link to="/services" className="hover:text-neon-blue transition-colors">Services</Link>
+            <Link to="/packages" className="hover:text-neon-blue transition-colors">Packages</Link>
+            <Link to="/projects" className="hover:text-neon-blue transition-colors">Projects</Link>
+            <Link to="/quote" className="hover:text-neon-blue transition-colors">Quote</Link>
+            <Link to="/faq" className="hover:text-neon-blue transition-colors">FAQ</Link>
+            <Link to="/contact" className="hover:text-neon-blue transition-colors">Contact</Link>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-6 text-xs font-mono text-slate-400 mt-1">
             <a
               href={`tel:${agencyConfig.contacts.phone}`}
               className="flex items-center gap-2 hover:text-neon-blue transition-colors"

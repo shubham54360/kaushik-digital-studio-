@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Send, MessageCircle, Check, Shield, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, Send, MessageCircle, Check, Shield, Zap, Sparkles, Smartphone, MessageSquare, CheckCircle, XCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import shubhamPortrait from '../assets/shubham_portrait.png';
 import { agencyConfig } from '../config/agency';
@@ -111,6 +111,32 @@ export default function Home() {
             <div className="absolute -top-1 -left-1 h-3.5 w-3.5 border-t-2 border-l-2 border-neon-blue/80 z-20" />
             <div className="absolute -bottom-1 -right-1 h-3.5 w-3.5 border-b-2 border-r-2 border-neon-purple/80 z-20" />
           </motion.div>
+        </div>
+      </div>
+
+      {/* Trust Badges Bar */}
+      <div className="max-w-6xl mx-auto px-6 mb-20 border-t border-b border-white/5 py-6 bg-white/1">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-y-4 gap-x-6 justify-items-center items-center text-[10px] sm:text-xs font-mono text-slate-400 uppercase tracking-widest text-center">
+          <div className="flex items-center gap-2">
+            <Smartphone className="h-4.5 w-4.5 text-neon-blue flex-shrink-0" />
+            <span>Mobile Responsive</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Zap className="h-4.5 w-4.5 text-neon-blue flex-shrink-0" />
+            <span>Fast Delivery</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <MessageSquare className="h-4.5 w-4.5 text-neon-purple flex-shrink-0" />
+            <span>Free Consultation</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Shield className="h-4.5 w-4.5 text-neon-pink flex-shrink-0" />
+            <span>Secure Dev</span>
+          </div>
+          <div className="col-span-2 md:col-span-1 flex items-center gap-2">
+            <CheckCircle className="h-4.5 w-4.5 text-emerald-400 flex-shrink-0" />
+            <span>Support Included</span>
+          </div>
         </div>
       </div>
 
@@ -310,6 +336,111 @@ export default function Home() {
             View All Projects <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
+      </div>
+
+      {/* Before vs After Section */}
+      <div className="max-w-5xl mx-auto px-6 mb-24">
+        <div className="flex flex-col items-center text-center mb-12">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-neon-blue font-bold mb-3 block">
+            Business Impact
+          </span>
+          <h2 className="text-3xl md:text-4xl font-display font-extrabold tracking-tight text-white">
+            Do You Need A Website?
+          </h2>
+          <p className="text-slate-400 text-xs sm:text-sm max-w-lg mt-3 font-sans leading-relaxed">
+            Compare how a professional digital presence transforms a local business.
+          </p>
+          <div className="w-12 h-[2px] bg-gradient-to-r from-neon-blue to-neon-purple mt-4" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          {/* Without Website */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="luxury-card p-6 sm:p-8 rounded-2xl relative overflow-hidden opacity-75 border-red-500/10"
+          >
+            <div className="absolute top-0 left-0 w-full h-[3px] bg-red-500/20" />
+            <h3 className="text-slate-400 font-display font-bold text-lg mb-6 flex items-center gap-2">
+              <XCircle className="h-5 w-5 text-red-500" />
+              WITHOUT WEBSITE
+            </h3>
+            <ul className="space-y-4 text-sm text-slate-500 font-sans">
+              <li className="flex items-center gap-3">
+                <span className="text-red-500 font-bold text-lg leading-none">✘</span> No Online Presence
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-red-500 font-bold text-lg leading-none">✘</span> Limited Reach
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-red-500 font-bold text-lg leading-none">✘</span> Lower Trust
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-red-500 font-bold text-lg leading-none">✘</span> Fewer Leads
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* With Website */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="luxury-card p-6 sm:p-8 rounded-2xl relative overflow-hidden border-neon-blue/20 bg-neon-blue/2"
+          >
+            <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-neon-blue to-neon-purple" />
+            <h3 className="text-white font-display font-bold text-lg mb-6 flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-neon-blue" />
+              WITH WEBSITE
+            </h3>
+            <ul className="space-y-4 text-sm text-slate-200 font-sans">
+              <li className="flex items-center gap-3 font-semibold">
+                <span className="text-neon-blue font-bold text-lg leading-none">✔</span> Professional Brand
+              </li>
+              <li className="flex items-center gap-3 font-semibold">
+                <span className="text-neon-blue font-bold text-lg leading-none">✔</span> More Customers
+              </li>
+              <li className="flex items-center gap-3 font-semibold">
+                <span className="text-neon-blue font-bold text-lg leading-none">✔</span> Better Visibility
+              </li>
+              <li className="flex items-center gap-3 font-semibold">
+                <span className="text-neon-blue font-bold text-lg leading-none">✔</span> Higher Trust
+              </li>
+              <li className="flex items-center gap-3 font-semibold">
+                <span className="text-neon-blue font-bold text-lg leading-none">✔</span> More Inquiries
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Free Consultation Section */}
+      <div className="max-w-4xl mx-auto px-6 mb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="luxury-card p-8 sm:p-10 rounded-2xl text-center relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/5 via-transparent to-transparent pointer-events-none" />
+          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-neon-purple px-3 py-1 border border-neon-purple/20 bg-neon-purple/5 rounded-full mb-4 inline-block">
+            15 Minute Free Consultation
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white mb-3">
+            Book a Free Strategy Session
+          </h2>
+          <p className="text-slate-400 text-xs sm:text-sm max-w-md mx-auto mb-6 leading-relaxed">
+            Let's discuss your business objectives and design a website structure tailored to generate sales. No purchase obligation.
+          </p>
+          <Link
+            to="/contact"
+            state={{ selectedContext: '15 Min Free Consultation', message: 'Hello Shubham, I would like to book a 15-minute free Strategy Session to discuss a website for my business.' }}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-neon-purple to-neon-pink text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded hover:shadow-[0_0_25px_rgba(138,43,226,0.35)] transition-all duration-300 cursor-pointer"
+          >
+            BOOK FREE CONSULTATION
+          </Link>
+        </motion.div>
       </div>
 
       {/* Global CTA Section */}

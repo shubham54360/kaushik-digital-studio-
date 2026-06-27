@@ -401,33 +401,39 @@ export default function PackagesPage() {
           </motion.div>
         </div>
 
-        {/* 3. Included Free With Every Website Section */}
+        {/* Included Free Section */}
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto luxury-card p-8 sm:p-12 rounded-[24px] relative overflow-hidden mb-20 border border-transparent bg-clip-padding before:absolute before:inset-0 before:p-[1.5px] before:bg-gradient-to-r before:from-neon-blue before:via-neon-purple before:to-neon-pink before:rounded-[24px] before:-z-10 before:content-[''] shadow-[0_0_50px_rgba(0,210,255,0.08)] bg-bg-darker/60"
+          style={{ background: 'rgba(18, 18, 24, 0.92)' }}
+          className="max-w-6xl mx-auto p-8 sm:p-12 rounded-[28px] relative overflow-hidden mb-20 border border-white/8 shadow-[0_10px_35px_rgba(0,0,0,0.4)]"
         >
-          {/* Spotlight background effect */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-full blur-[100px] pointer-events-none -z-10" />
+          {/* Subtle left/right border glows */}
+          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[250px] h-[250px] bg-cyan-500/5 rounded-full blur-[80px] pointer-events-none -z-10" />
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[250px] h-[250px] bg-purple-500/5 rounded-full blur-[80px] pointer-events-none -z-10" />
 
           {/* Floating animated badge */}
-          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
-            <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-widest text-white px-3 py-1.5 rounded-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink shadow-[0_0_15px_rgba(0,210,255,0.4)] animate-pulse">
+          <motion.div
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20"
+          >
+            <span className="text-[9px] sm:text-[10px] font-mono font-black uppercase tracking-widest text-white px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
               🎁 100% FREE
             </span>
-          </div>
+          </motion.div>
 
           {/* Heading */}
           <div className="flex flex-col items-center text-center mb-10 relative">
             <span className="text-[10px] uppercase tracking-[0.3em] text-neon-blue font-bold mb-3 block">
               Value Proposition
             </span>
-            <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-white">
+            <h2 className="text-2xl sm:text-3xl font-display font-black tracking-tight text-white mb-2 leading-none">
               Included Free With Every Website
             </h2>
-            <p className="text-slate-400 text-xs sm:text-sm max-w-xl mt-3 font-sans leading-relaxed">
+            <p className="text-[#C5C7D0] text-xs sm:text-sm max-w-xl mt-3 font-sans leading-relaxed">
               Every website package includes these premium features at absolutely no additional cost.
             </p>
           </div>
@@ -435,12 +441,12 @@ export default function PackagesPage() {
           {/* 3x2 Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             {[
-              { title: 'Mobile Responsive Design', desc: 'Works perfectly on all devices.', icon: Smartphone, color: 'text-neon-blue' },
-              { title: 'WhatsApp Integration', desc: 'Direct chat with your customers.', icon: MessageCircle, color: 'text-emerald-400' },
-              { title: 'Contact Form', desc: 'Receive enquiries directly on your email.', icon: Mail, color: 'text-neon-purple' },
-              { title: 'Fast Loading Performance', desc: 'Optimized for speed and performance.', icon: Zap, color: 'text-neon-pink' },
-              { title: 'Basic SEO Setup', desc: 'Ready for search engine indexing.', icon: CheckCircle, color: 'text-neon-blue' },
-              { title: 'Free QR Code', desc: 'A custom QR code linked to your website.', icon: QrCode, color: 'text-neon-purple' }
+              { title: 'Mobile Responsive Design', desc: 'Works perfectly on all devices.', icon: Smartphone, color: 'text-cyan-400', borderGlow: 'hover:border-cyan-500/30' },
+              { title: 'WhatsApp Integration', desc: 'Direct chat with your customers.', icon: MessageCircle, color: 'text-emerald-400', borderGlow: 'hover:border-emerald-500/30' },
+              { title: 'Contact Form', desc: 'Receive enquiries directly on your email.', icon: Mail, color: 'text-purple-400', borderGlow: 'hover:border-purple-500/30' },
+              { title: 'Fast Loading Performance', desc: 'Optimized for speed and performance.', icon: Zap, color: 'text-orange-400', borderGlow: 'hover:border-orange-500/30' },
+              { title: 'Basic SEO Setup', desc: 'Ready for search engine indexing.', icon: CheckCircle, color: 'text-blue-400', borderGlow: 'hover:border-blue-500/30' },
+              { title: 'Free QR Code', desc: 'A custom QR code linked to your website.', icon: QrCode, color: 'text-pink-400', borderGlow: 'hover:border-pink-500/30' }
             ].map((feat, i) => {
               const Icon = feat.icon;
               return (
@@ -450,45 +456,46 @@ export default function PackagesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.05 }}
-                  className="luxury-card p-5 rounded-[20px] border border-white/5 bg-black/30 hover:border-neon-blue/30 transition-all duration-300 flex items-start gap-4 hover:shadow-[0_0_20px_rgba(0,210,255,0.08)] hover:-translate-y-1 min-h-[115px]"
+                  style={{ background: 'rgba(20, 20, 28, 0.95)' }}
+                  className={`p-5 rounded-[20px] border border-white/8 transition-all duration-300 flex items-start gap-4 hover:shadow-[0_0_20px_rgba(255,255,255,0.03)] hover:-translate-y-1 min-h-[115px] ${feat.borderGlow}`}
                 >
-                  <div className="h-9 w-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Icon className={`h-4.5 w-4.5 ${feat.color}`} />
+                  <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-inner">
+                    <Icon className={`h-5 w-5 ${feat.color}`} />
                   </div>
                   <div>
                     <h3 className="text-white font-display font-bold text-sm mb-1">{feat.title}</h3>
-                    <p className="text-slate-400 text-xs leading-relaxed font-sans">{feat.desc}</p>
+                    <p className="text-[#AEB5C4] text-xs leading-relaxed font-sans">{feat.desc}</p>
                   </div>
                 </motion.div>
               );
             })}
           </div>
 
-          {/* Highlighted Premium Banner */}
+          {/* Highlighted Premium Glass Banner */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-5 sm:p-6 rounded-[16px] text-center bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink shadow-[0_0_25px_rgba(0,210,255,0.25)] mb-8"
+            className="p-5 sm:p-6 rounded-[16px] text-center relative bg-clip-padding before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-cyan-500/30 before:via-purple-500/30 before:to-pink-500/30 before:rounded-[16px] before:-z-10 before:content-[''] bg-black/60 shadow-[0_0_20px_rgba(0,0,0,0.4)] mb-8"
           >
-            <p className="text-white font-sans font-bold text-xs sm:text-sm tracking-wide">
-              ✨ Every website we deliver includes these features completely FREE. No hidden charges. No extra setup fees.
+            <p className="text-white font-sans font-bold text-xs sm:text-sm tracking-wide relative z-10">
+              ✨ Every website includes these premium features absolutely FREE. No hidden charges. No setup fees.
             </p>
           </motion.div>
 
           {/* Trust Badges */}
-          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-[10px] sm:text-xs font-mono text-slate-500 uppercase tracking-widest">
-            <span className="flex items-center gap-1.5 text-emerald-400">
-              ✓ <span className="text-slate-400">No Hidden Charges</span>
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-[10px] sm:text-xs font-mono text-white uppercase tracking-widest">
+            <span className="flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-emerald-450 font-bold" /> <span>No Hidden Charges</span>
             </span>
-            <span className="flex items-center gap-1.5 text-emerald-400">
-              ✓ <span className="text-slate-400">Mobile Optimized</span>
+            <span className="flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-emerald-450 font-bold" /> <span>Mobile Optimized</span>
             </span>
-            <span className="flex items-center gap-1.5 text-emerald-400">
-              ✓ <span className="text-slate-400">Business Ready</span>
+            <span className="flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-emerald-450 font-bold" /> <span>Business Ready</span>
             </span>
-            <span className="flex items-center gap-1.5 text-emerald-400">
-              ✓ <span className="text-slate-400">Professional Delivery</span>
+            <span className="flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-emerald-450 font-bold" /> <span>Professional Delivery</span>
             </span>
           </div>
         </motion.div>

@@ -111,7 +111,7 @@ export default function PackagesPage() {
   const packages = [
     {
       name: 'Starter Website',
-      price: '₹1999',
+      price: '₹1,999',
       icon: Box,
       features: [
         'Single Page Website',
@@ -122,11 +122,12 @@ export default function PackagesPage() {
       ],
       accentColor: 'text-neon-blue',
       glow: 'hover:border-neon-blue/30 border-white/5',
-      badge: null
+      badge: null,
+      isStarting: true
     },
     {
       name: 'Business Website',
-      price: '₹3499',
+      price: '₹3,499',
       icon: Layers,
       features: [
         'Up To 5 Pages',
@@ -139,11 +140,12 @@ export default function PackagesPage() {
       ],
       accentColor: 'text-neon-purple',
       glow: 'border-neon-purple/40 shadow-[0_0_30px_rgba(157,78,221,0.15)]',
-      badge: 'Most Popular'
+      badge: 'Most Popular',
+      isStarting: true
     },
     {
       name: 'Premium Website',
-      price: '₹5999',
+      price: '₹5,999',
       icon: Cpu,
       features: [
         'Premium Custom Design',
@@ -157,7 +159,33 @@ export default function PackagesPage() {
       ],
       accentColor: 'text-neon-pink',
       glow: 'hover:border-neon-pink/30 border-white/5',
-      badge: null
+      badge: null,
+      isStarting: true
+    },
+    {
+      name: 'Custom Solution',
+      price: 'Custom Pricing',
+      icon: Settings,
+      features: [
+        'Unlimited Requirement Discussion',
+        'Fully Custom Design',
+        'Custom Pages',
+        'Payment Gateway Integration',
+        'Admin Dashboard',
+        'Booking System',
+        'User Login & Authentication',
+        'Database Integration',
+        'API Integrations',
+        'AI Chatbot Integration',
+        'Advanced SEO Setup',
+        'Premium Support',
+      ],
+      accentColor: 'text-neon-blue',
+      glow: 'border-neon-purple/45 shadow-[0_0_40px_rgba(157,78,221,0.2)] hover:shadow-[0_0_50px_rgba(157,78,221,0.3)]',
+      badge: 'Best For Custom Projects',
+      isStarting: false,
+      isCustom: true,
+      subtitle: 'Perfect for businesses that require advanced features, custom functionality, or unique business solutions.'
     }
   ];
 
@@ -206,7 +234,7 @@ export default function PackagesPage() {
         </div>
 
         {/* 1. Pricing Plans Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch mb-8">
           {packages.map((pkg, i) => {
             const Icon = pkg.icon;
             return (
@@ -216,14 +244,16 @@ export default function PackagesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className={`luxury-card p-6 sm:p-8 rounded-2xl relative flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 ${
+                className={`luxury-card p-6 rounded-2xl relative flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 ${
                   i === 1
                     ? 'border-neon-purple/45 shadow-[0_0_40px_rgba(157,78,221,0.15)] hover:shadow-[0_0_50px_rgba(157,78,221,0.25)]'
+                    : pkg.isCustom
+                    ? 'border-neon-blue/30 lg:scale-[1.02] shadow-[0_0_40px_rgba(0,210,255,0.15)] hover:shadow-[0_0_50px_rgba(0,210,255,0.25)]'
                     : 'hover:shadow-[0_0_25px_rgba(0,210,255,0.08)] border-white/5'
                 }`}
               >
                 {pkg.badge && (
-                  <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[9px] font-mono font-bold uppercase tracking-widest px-3.5 py-1 rounded-full border border-white/10 shadow-lg">
+                  <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[9px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10 shadow-lg">
                     {pkg.badge}
                   </div>
                 )}
@@ -236,9 +266,23 @@ export default function PackagesPage() {
                     <h3 className="text-white font-display font-bold text-base sm:text-lg">{pkg.name}</h3>
                   </div>
 
-                  <div className="flex items-baseline mb-6">
-                    <span className="text-3xl sm:text-4xl font-display font-black text-white">{pkg.price}</span>
-                    <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider ml-1.5">/ One-Time</span>
+                  <div className="flex flex-col mb-6">
+                    {pkg.isStarting && (
+                      <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest font-bold mb-1">
+                        Starting From
+                      </span>
+                    )}
+                    <div className="flex items-baseline">
+                      <span className="text-2xl sm:text-3xl font-display font-black text-white">{pkg.price}</span>
+                      {!pkg.isCustom && (
+                        <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider ml-1">/ One-Time</span>
+                      )}
+                    </div>
+                    {pkg.subtitle && (
+                      <p className="text-slate-400 text-[10px] sm:text-[11px] leading-relaxed font-sans mt-3 border-t border-white/5 pt-3">
+                        {pkg.subtitle}
+                      </p>
+                    )}
                   </div>
 
                   <ul className="space-y-3 mb-8 text-xs text-slate-455 font-sans">
@@ -248,20 +292,75 @@ export default function PackagesPage() {
                         <span>{feat}</span>
                       </li>
                     ))}
+                    {pkg.isCustom && (
+                      <>
+                        <li className="flex items-start gap-2 border-t border-white/5 pt-3 mt-3">
+                          <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block font-bold">Timeline:</span>
+                          <span className="text-white text-xs font-semibold">Project Scope Based</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-[9px] font-mono text-slate-500 uppercase tracking-wider block font-bold">Support:</span>
+                          <span className="text-white text-xs font-semibold">Up to 6 Months</span>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </div>
 
-                <Link
-                  to="/contact"
-                  state={{ selectedContext: `${pkg.name} (${pkg.price})`, message: `Hello Shubham, I would like to order the ${pkg.name} (${pkg.price}) for my business.` }}
-                  className="w-full py-3 bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 border border-neon-blue/20 hover:border-neon-blue hover:bg-neon-blue/15 text-white text-xs font-bold uppercase tracking-widest rounded text-center transition-all duration-300"
-                >
-                  Start Project
-                </Link>
+                {pkg.isCustom ? (
+                  <button
+                    onClick={() => {
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="w-full py-3 bg-gradient-to-r from-neon-blue to-neon-purple hover:shadow-[0_0_20px_rgba(0,210,255,0.4)] text-white text-xs font-bold uppercase tracking-widest rounded text-center transition-all duration-300 cursor-pointer"
+                  >
+                    Request Custom Quote
+                  </button>
+                ) : (
+                  <Link
+                    to="/contact"
+                    state={{ selectedContext: `${pkg.name} (${pkg.price})`, message: `Hello Shubham, I would like to order the ${pkg.name} (${pkg.price}) for my business.` }}
+                    className="w-full py-3 bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 border border-neon-blue/20 hover:border-neon-blue hover:bg-neon-blue/15 text-white text-xs font-bold uppercase tracking-widest rounded text-center transition-all duration-300"
+                  >
+                    Start Project
+                  </Link>
+                )}
               </motion.div>
             );
           })}
         </div>
+
+        {/* Pricing Note Box */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto luxury-card p-6 sm:p-8 rounded-2xl relative overflow-hidden mb-20 border border-white/5 bg-black/40 backdrop-blur-md"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/5 to-neon-purple/5 pointer-events-none" />
+          <h4 className="text-white font-display font-bold text-sm mb-4 flex items-center gap-2">
+            <HelpCircle className="h-4.5 w-4.5 text-neon-blue" />
+            Transparent Pricing
+          </h4>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 text-xs text-slate-400 font-sans">
+            <li className="flex items-start gap-2">
+              <span className="text-neon-blue font-bold mt-0.5">•</span>
+              <span>All prices shown are starting prices.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-neon-blue font-bold mt-0.5">•</span>
+              <span>Final pricing depends on project requirements, features, design complexity, and development time.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-neon-blue font-bold mt-0.5">•</span>
+              <span>No hidden charges.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-neon-blue font-bold mt-0.5">•</span>
+              <span>You will always receive a detailed quotation before work begins.</span>
+            </li>
+          </ul>
+        </motion.div>
 
         {/* 2. Custom Features & Add-ons Section */}
         <div className="max-w-6xl mx-auto mb-20 relative">
@@ -420,7 +519,7 @@ export default function PackagesPage() {
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
             className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20"
           >
-            <span className="text-[9px] sm:text-[10px] font-mono font-black uppercase tracking-widest text-white px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-650 shadow-[0_0_15px_rgba(59,130,246,0.25)] border border-white/10 backdrop-blur-md">
+            <span className="text-[9px] sm:text-[10px] font-mono font-black uppercase tracking-widest text-white px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-655 shadow-[0_0_15px_rgba(59,130,246,0.25)] border border-white/10 backdrop-blur-md">
               🎁 FREE BONUS
             </span>
           </motion.div>
@@ -514,7 +613,7 @@ export default function PackagesPage() {
           </h2>
           <table className="w-full text-left border-collapse text-xs sm:text-sm text-slate-350 min-w-[600px] luxury-card rounded-lg overflow-hidden">
             <thead>
-              <tr className="bg-white/5 text-[10px] font-mono uppercase tracking-wider text-slate-450 border-b border-white/10">
+              <tr className="bg-white/5 text-[10px] font-mono uppercase tracking-wider text-slate-455 border-b border-white/10">
                 <th className="p-4 sm:p-5">Feature</th>
                 <th className="p-4 sm:p-5">Starter</th>
                 <th className="p-4 sm:p-5">Business</th>

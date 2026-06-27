@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import { Check, ArrowRight, Star, ShoppingCart, Calendar, Mail, Shield, Smartphone, Zap } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ServicesPage() {
+  const navigate = useNavigate();
   const serviceList = [
     { title: "Business Websites", price: "₹1999+", desc: "Professional web presence for local shops, showrooms, consultants, and freelance service providers.", icon: Shield, accent: "text-neon-blue" },
     { title: "Coaching Institute Websites", price: "₹2499+", desc: "Structured student platforms presenting course catalogs, batch details, and inquiry registration forms.", icon: Star, accent: "text-neon-purple" },
@@ -80,14 +81,18 @@ export default function ServicesPage() {
                   </p>
                 </div>
 
-                <Link
-                  to="/contact"
-                  state={{ selectedContext: `Website Preview - ${service.title}`, message: `Hello Shubham, I would like to request a preview draft for my business using the ${service.title} plan.` }}
+                <button
+                  onClick={() => navigate('/contact', {
+                    state: {
+                      selectedContext: `Website Preview - ${service.title}`,
+                      message: `Hello Shubham, I would like to request a preview draft for my business using the ${service.title} plan.`
+                    }
+                  })}
                   className="w-full mt-5 py-3 text-center bg-gradient-to-r from-neon-blue/15 to-neon-purple/15 hover:from-neon-blue/25 hover:to-neon-purple/25 border border-neon-blue/30 hover:border-neon-blue text-white text-[10px] font-mono font-bold uppercase tracking-widest rounded transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer hover:shadow-[0_0_15px_rgba(0,210,255,0.2)] active:scale-98"
                 >
                   Request Preview
                   <ArrowRight className="h-3.5 w-3.5 text-neon-blue" />
-                </Link>
+                </button>
               </motion.div>
             );
           })}
@@ -116,13 +121,13 @@ export default function ServicesPage() {
           </div>
 
           <div className="mt-12 text-center border-t border-white/5 pt-8">
-            <Link
-              to="/packages"
+            <button
+              onClick={() => navigate('/packages')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded hover:shadow-[0_0_25px_rgba(0,210,255,0.45)] hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer"
             >
               Check Website Packages
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </button>
           </div>
         </div>
 

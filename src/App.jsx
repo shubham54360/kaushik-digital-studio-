@@ -19,11 +19,16 @@ import ContactPage from './pages/ContactPage';
 import QuotePage from './pages/QuotePage';
 import FaqPage from './pages/FaqPage';
 
+let isFirstLoad = true;
+
 // Mounting redirect helper to always start on home `/` on fresh session
 function HomeRedirect() {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate('/', { replace: true });
+    if (isFirstLoad) {
+      isFirstLoad = false;
+      navigate('/', { replace: true });
+    }
   }, [navigate]);
   return null;
 }

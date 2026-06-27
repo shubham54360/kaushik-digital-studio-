@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, HelpCircle, ArrowRight, Layers, Box, Cpu, ChevronDown, CheckCircle, Loader2, Send } from 'lucide-react';
+import { Check, HelpCircle, ArrowRight, Layers, Box, Cpu, ChevronDown, CheckCircle, Loader2, Send, CreditCard, Settings, Calendar, Bot } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 
@@ -281,34 +281,138 @@ export default function PackagesPage() {
           })}
         </div>
 
-        {/* Custom Website Solutions Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-6xl mx-auto luxury-card p-8 sm:p-10 rounded-xl relative overflow-hidden mb-24"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-neon-pink/5 via-transparent to-transparent pointer-events-none" />
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left Column: Details */}
-            <div className="lg:col-span-6">
-              <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-neon-pink px-2 py-0.5 rounded border border-neon-pink/20 bg-neon-pink/5 mb-3.5 inline-block">
-                Tailored Solutions
-              </span>
-              <h3 className="text-white font-display font-extrabold text-2xl sm:text-3xl mb-4">
-                Custom Website Solutions
-              </h3>
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 font-sans">
-                Need something beyond our standard packages? We build fully customized websites tailored to your business requirements. Every project is quoted based on its features, complexity, and development time.
-              </p>
-              
-              <div className="p-4 rounded border border-white/5 bg-white/5 mb-6">
-                <h4 className="text-[10px] font-mono font-bold text-slate-300 uppercase tracking-widest mb-1.5">
+        {/* Custom Features & Add-ons Section */}
+        <div className="max-w-6xl mx-auto mb-24 relative">
+          <div className="flex flex-col items-center text-center mb-12">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-neon-pink font-bold mb-3 block">
+              Advanced Add-ons
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-extrabold tracking-tight text-white">
+              Custom Features & Add-ons
+            </h2>
+            <p className="text-slate-400 text-xs sm:text-sm max-w-2xl mt-3 leading-relaxed font-sans">
+              Need advanced functionality? We offer custom development tailored to your business needs. These features are not included in standard website packages and are quoted separately based on project requirements.
+            </p>
+            <div className="w-12 h-[2px] bg-gradient-to-r from-neon-blue to-neon-purple mt-4" />
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            {/* Card 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.05 }}
+              className="luxury-card p-6 rounded-xl relative overflow-hidden flex flex-col justify-between"
+            >
+              <div className="absolute top-0 left-0 w-full h-[2.5px] bg-neon-blue" />
+              <div>
+                <div className="h-10 w-10 rounded border border-white/10 bg-white/5 flex items-center justify-center mb-5">
+                  <CreditCard className="h-5.5 w-5.5 text-neon-blue" />
+                </div>
+                <h3 className="text-white font-display font-bold text-base mb-1">
+                  Payment Gateway
+                </h3>
+                <span className="text-[10px] font-mono font-bold text-neon-blue uppercase tracking-wider block mb-4">
+                  Starting from ₹3,000
+                </span>
+                <p className="text-slate-400 text-[11px] leading-relaxed font-sans">
+                  Secure online payment integration using the client's preferred payment provider. Includes setup, testing, and integration.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="luxury-card p-6 rounded-xl relative overflow-hidden flex flex-col justify-between"
+            >
+              <div className="absolute top-0 left-0 w-full h-[2.5px] bg-neon-purple" />
+              <div>
+                <div className="h-10 w-10 rounded border border-white/10 bg-white/5 flex items-center justify-center mb-5">
+                  <Settings className="h-5.5 w-5.5 text-neon-purple" />
+                </div>
+                <h3 className="text-white font-display font-bold text-base mb-1">
+                  Admin Panel
+                </h3>
+                <span className="text-[10px] font-mono font-bold text-neon-purple uppercase tracking-wider block mb-4">
+                  Starting from ₹8,000
+                </span>
+                <p className="text-slate-400 text-[11px] leading-relaxed font-sans">
+                  A secure admin dashboard to manage website content, products, services, or enquiries without editing code.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.15 }}
+              className="luxury-card p-6 rounded-xl relative overflow-hidden flex flex-col justify-between"
+            >
+              <div className="absolute top-0 left-0 w-full h-[2.5px] bg-neon-pink" />
+              <div>
+                <div className="h-10 w-10 rounded border border-white/10 bg-white/5 flex items-center justify-center mb-5">
+                  <Calendar className="h-5.5 w-5.5 text-neon-pink" />
+                </div>
+                <h3 className="text-white font-display font-bold text-base mb-1">
+                  Booking System
+                </h3>
+                <span className="text-[10px] font-mono font-bold text-neon-pink uppercase tracking-wider block mb-4">
+                  Starting from ₹5,000
+                </span>
+                <p className="text-slate-400 text-[11px] leading-relaxed font-sans">
+                  Allow customers to book appointments, consultations, or services directly from your website.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              className="luxury-card p-6 rounded-xl relative overflow-hidden flex flex-col justify-between"
+            >
+              <div className="absolute top-0 left-0 w-full h-[2.5px] bg-emerald-500" />
+              <div>
+                <div className="h-10 w-10 rounded border border-white/10 bg-white/5 flex items-center justify-center mb-5">
+                  <Bot className="h-5.5 w-5.5 text-emerald-400" />
+                </div>
+                <h3 className="text-white font-display font-bold text-base mb-1">
+                  AI Chatbot
+                </h3>
+                <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider block mb-4">
+                  Starting from ₹4,000
+                </span>
+                <p className="text-slate-400 text-[11px] leading-relaxed font-sans">
+                  An intelligent chatbot that can answer FAQs, capture leads, and assist visitors 24/7.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Highlighted Premium Card Note & CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="luxury-card p-6 sm:p-8 rounded-xl relative overflow-hidden bg-gradient-to-r from-neon-blue/5 via-neon-purple/5 to-transparent border-neon-blue/20"
+          >
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="max-w-2xl text-center md:text-left">
+                <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-neon-blue block mb-1">
                   Pricing Notice
-                </h4>
-                <p className="text-[11px] text-slate-400 leading-relaxed font-sans">
-                  Standard packages cover only the listed features. Advanced features and custom integrations are priced separately after discussing your project requirements.
+                </span>
+                <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                  Prices shown are starting estimates. Final pricing depends on project requirements, design complexity, and additional functionality.
                 </p>
               </div>
 
@@ -316,45 +420,14 @@ export default function PackagesPage() {
                 onClick={() => {
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-gradient-to-r from-neon-pink to-neon-purple text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded hover:shadow-[0_0_20px_rgba(255,0,127,0.35)] hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer"
+                className="w-full md:w-auto inline-flex justify-center items-center gap-2 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded hover:shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer flex-shrink-0"
               >
-                Request a Custom Quote
+                Request Custom Quote
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
-
-            {/* Right Column: Custom features list */}
-            <div className="lg:col-span-6 border-t lg:border-t-0 lg:border-l border-white/5 pt-6 lg:pt-0 lg:pl-8">
-              <h4 className="text-xs font-mono font-bold text-neon-blue uppercase tracking-widest mb-4">
-                Example Custom Features
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  'Payment Gateway Integration',
-                  'Auto Email Confirmation',
-                  'Contact Form Integration',
-                  'Booking & Appointment System',
-                  'Admin Dashboard',
-                  'User Login & Authentication',
-                  'Database Integration',
-                  'Custom API Integration',
-                  'WhatsApp Integration',
-                  'Multi-step Forms',
-                  'SEO Optimization',
-                  'Blog System',
-                  'Analytics Integration',
-                  'E-commerce Features',
-                  'Custom Business Logic'
-                ].map((feat) => (
-                  <div key={feat} className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-neon-pink flex-shrink-0" />
-                    <span className="text-[11px] sm:text-xs text-slate-350 font-sans">{feat}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* Feature Comparison Table */}
         <div className="max-w-6xl mx-auto mb-24 overflow-x-auto">

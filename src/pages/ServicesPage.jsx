@@ -82,6 +82,7 @@ export default function ServicesPage() {
 
                 <Link
                   to="/contact"
+                  state={{ selectedContext: `Website Preview - ${service.title}`, message: `Hello Shubham, I would like to request a preview draft for my business using the ${service.title} plan.` }}
                   className="text-xs font-mono font-bold uppercase tracking-wider text-neon-purple hover:text-neon-blue transition-colors flex items-center gap-1.5 self-start mt-4"
                 >
                   Request Preview <ArrowRight className="h-3 w-3" />

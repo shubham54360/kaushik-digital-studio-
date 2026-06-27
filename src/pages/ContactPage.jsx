@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, Mail, Send, CheckCircle, Loader2, Phone, Clock, MapPin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { agencyConfig } from '../config/agency';
 
 export default function ContactPage() {
+  const location = useLocation();
+  const [selectedContext, setSelectedContext] = useState(null);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,6 +21,15 @@ export default function ContactPage() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    if (location.state?.selectedContext) {
+      setSelectedContext(location.state.selectedContext);
+    }
+    if (location.state?.message) {
+      setFormData((prev) => ({ ...prev, message: location.state.message }));
+    }
+  }, [location]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -196,6 +209,24 @@ export default function ContactPage() {
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4 font-sans text-sm">
+                    {selectedContext && (
+                      <div className="p-4 rounded border border-neon-blue/20 bg-neon-blue/5 text-[11px] text-slate-300 font-sans flex items-center justify-between gap-3 shadow-[0_0_15px_rgba(0,210,255,0.05)]">
+                        <div>
+                          <span className="text-[9px] font-mono text-neon-blue uppercase tracking-widest block font-bold mb-0.5">Selected Project Package</span>
+                          <span className="text-white font-bold text-xs">{selectedContext}</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedContext(null);
+                            setFormData((prev) => ({ ...prev, message: '' }));
+                          }}
+                          className="px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-wider text-slate-500 hover:text-neon-pink border border-white/5 hover:border-neon-pink/20 bg-white/5 rounded transition-all cursor-pointer"
+                        >
+                          Clear
+                        </button>
+                      </div>
+                    )}
                     {errors.form && (
                       <div className="p-3 bg-red-500/10 border border-red-500/30 rounded text-red-400 text-xs">
                         {errors.form}

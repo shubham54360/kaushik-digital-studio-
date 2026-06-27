@@ -233,10 +233,11 @@ export default function Home() {
                 </ul>
               </div>
               <Link
-                to="/packages"
-                className="w-full py-2 bg-white/5 border border-white/10 hover:border-neon-blue text-center text-[10px] font-bold uppercase rounded block transition-all"
+                to="/contact"
+                state={{ selectedContext: `${pkg.name} (${pkg.price})`, message: `Hello Shubham, I would like to order the ${pkg.name} (${pkg.price}) for my business.` }}
+                className="w-full py-2 bg-white/5 border border-white/10 hover:border-neon-blue text-center text-[10px] font-bold uppercase rounded block transition-all cursor-pointer"
               >
-                Learn More
+                Select Package
               </Link>
             </motion.div>
           ))}

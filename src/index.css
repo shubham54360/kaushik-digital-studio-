@@ -52,6 +52,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background: radial-gradient(circle at 50% 0%, #0c0721 0%, #020105 80%) !important;
 }
 
 /* Custom Scrollbar */

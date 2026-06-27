@@ -166,6 +166,7 @@ export default function PackagesPage() {
 
                 <Link
                   to="/contact"
+                  state={{ selectedContext: `${pkg.name} (${pkg.price})`, message: `Hello Shubham, I would like to order the ${pkg.name} (${pkg.price}) for my business.` }}
                   className="w-full py-3 bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 border border-neon-blue/20 hover:border-neon-blue hover:bg-neon-blue/15 text-white text-xs font-bold uppercase tracking-widest rounded text-center transition-all duration-300"
                 >
                   Start Project
@@ -210,6 +211,7 @@ export default function PackagesPage() {
               <span className="text-4xl font-display font-black text-white mb-6">{customPlan.price}</span>
               <Link
                 to="/contact"
+                state={{ selectedContext: 'Custom Business Solution (Starting ₹6999)', message: 'Hello Shubham, I would like to consult about building a Custom Business Solution for my business.' }}
                 className="w-full max-w-xs py-3.5 bg-gradient-to-r from-neon-pink to-neon-purple text-white text-xs font-bold uppercase tracking-widest rounded hover:shadow-[0_0_20px_rgba(255,0,127,0.35)] transition-all duration-300 block"
               >
                 Request Consultation

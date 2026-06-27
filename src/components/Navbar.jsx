@@ -75,6 +75,7 @@ export default function Navbar() {
 
           <Link
             to="/contact"
+            state={{ selectedContext: 'Start Custom Website Project', message: 'Hello Shubham, I would like to start a custom website project for my business.' }}
             className="flex items-center gap-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[10px] font-bold uppercase tracking-wider px-4 py-2.5 rounded hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all duration-300 group"
           >
             Start Project
@@ -120,6 +121,7 @@ export default function Navbar() {
               <li className="pt-2">
                 <Link
                   to="/contact"
+                  state={{ selectedContext: 'Start Custom Website Project', message: 'Hello Shubham, I would like to start a custom website project for my business.' }}
                   onClick={() => setIsOpen(false)}
                   className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[10px] font-bold uppercase py-3 rounded hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all duration-300"
                 >

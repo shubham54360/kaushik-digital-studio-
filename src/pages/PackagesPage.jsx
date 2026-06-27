@@ -3,10 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Check, HelpCircle, ArrowRight, Layers, Box, Cpu, ChevronDown, CheckCircle, Loader2, Send, CreditCard, Settings, Calendar, Bot, Smartphone, MessageCircle, Mail, Zap, QrCode } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
+import { agencyConfig } from '../config/agency';
 
 export default function PackagesPage() {
-  const [activeFaq, setActiveFaq] = useState(null);
-
   // Form State for Custom Quote Request
   const [formData, setFormData] = useState({
     name: '',
@@ -72,7 +71,7 @@ export default function PackagesPage() {
       phone: formData.phone,
       business_name: 'N/A',
       message: `[CUSTOM QUOTE REQUEST FROM PACKAGES PAGE]\n\n${formData.message}`,
-      to_email: 'sk1513217@gmail.com'
+      to_email: agencyConfig.contacts.email
     };
 
     if (serviceId === 'service_placeholder' || templateId === 'template_placeholder' || publicKey === 'public_key_placeholder') {
@@ -139,7 +138,7 @@ export default function PackagesPage() {
         'Fast Loading Speed',
       ],
       accentColor: 'text-neon-purple',
-      glow: 'border-neon-purple/40 shadow-[0_0_30px_rgba(157,78,221,0.1)]',
+      glow: 'border-neon-purple/40 shadow-[0_0_30px_rgba(157,78,221,0.15)]',
       badge: 'Most Popular'
     },
     {
@@ -152,118 +151,101 @@ export default function PackagesPage() {
         'WhatsApp Integration',
         'Contact Form & Inbox',
         'Google Maps Integration',
-        'SEO Ready Architecture',
+        'Basic SEO Setup',
         'Google Business Profile Setup',
-        'Domain Linkage Assistance',
-        'Vip Priority Support',
+        '6 Months Free Support',
       ],
       accentColor: 'text-neon-pink',
       glow: 'hover:border-neon-pink/30 border-white/5',
-      badge: 'Best Value'
+      badge: null
     }
-  ];
-
-  const customPlan = {
-    name: 'Custom Business Solution',
-    price: 'Starting ₹6999',
-    desc: 'Everything required for advanced business web apps, e-commerce, dashboard configurations, and custom client flows.',
-    features: [
-      'Payment Gateway Integrations', 'Online Booking Systems', 'Admin Management Panels',
-      'Secure User Account Portals', 'Automated Email Confirmations', 'Advanced API & Inventory Sync'
-    ]
-  };
-
-  const steps = [
-    { title: '1. Requirement Discussion', desc: 'Consultation to align on business requirements, feature lists, and branding.' },
-    { title: '2. UI Design', desc: 'Crafting the visual layout mockups, color palettes, and typography structure.' },
-    { title: '3. Website Development', desc: 'Writing high-performance code, configuring integrations, and compiling build configurations.' },
-    { title: '4. Client Review', desc: 'Demonstrating draft previews on actual mobile, tablet, and desktop screens for feedback.' },
-    { title: '5. Website Launch', desc: 'Domain mapping, hosting deployment, final SEO indexing, and search engine integration.' },
-    { title: '6. Free Support', desc: 'Activating post-delivery complimentary support coverage (15 Days to 6 Months) for peace of mind.' }
-  ];
-
-  const faqs = [
-    { q: 'Will my website work perfectly on smartphones?', a: 'Absolutely. Every single layout we develop is fully mobile-responsive and adjusts dynamically to look stunning on iPhones, Android devices, tablets, and desktop displays.' },
-    { q: 'How long does it take to deliver the website?', a: 'Starter websites are usually completed in 2-3 business days. Business websites take 5-7 days, while custom solutions depend on the final list of integrated capabilities.' },
-    { q: 'Are there any monthly or annual hidden charges?', a: 'No hidden charges. Our packages are absolute one-time development costs. Renewals for hosting and domain registrations are paid directly to third-party providers (typically ~₹1000-1500 per year).' },
-    { q: 'Can I upgrade my package in the future?', a: 'Yes. You can start with the Starter package today and scale it into a fully-fledged multi-page Business website at any time.' }
   ];
 
   const comparison = [
     { feature: 'Number of Pages', starter: '1 Page', business: 'Up to 5 Pages', premium: 'Custom (Unlimited)', custom: 'Custom' },
-    { feature: 'Mobile Optimized UI', starter: 'Yes', business: 'Yes', premium: 'Yes', custom: 'Yes' },
-    { feature: 'WhatsApp Chat Integration', starter: 'Yes', business: 'Yes', premium: 'Yes', custom: 'Yes' },
-    { feature: 'Contact Form', starter: 'Yes', business: 'Yes (Inbox sync)', premium: 'Yes (Inbox sync)', custom: 'Yes' },
-    { feature: 'Google Maps Integration', starter: 'No', business: 'Yes', premium: 'Yes', custom: 'Yes' },
-    { feature: 'SEO Configuration', starter: 'Basic Metadata', business: 'Basic Metadata', premium: 'Advanced Audit', custom: 'Advanced Audit' },
-    { feature: 'Google Business Profile Setup', starter: 'No', business: 'No', premium: 'Yes', custom: 'Yes' },
-    { feature: 'Admin Portal & Login', starter: 'No', business: 'No', premium: 'No', custom: 'Yes' },
-    { feature: 'Payment Integrations', starter: 'No', business: 'No', premium: 'No', custom: 'Yes' },
-    { feature: 'Support Tier', starter: 'Standard (Email)', starter: 'Priority (Chat)', premium: 'Vip (Call/Chat)', custom: 'Vip (Call/Chat)' }
+    { feature: 'Mobile Responsive', starter: 'Yes', business: 'Yes', premium: 'Yes', custom: 'Yes' },
+    { feature: 'WhatsApp Integration', starter: 'Yes', business: 'Yes', premium: 'Yes', custom: 'Yes' },
+    { feature: 'Contact Form', starter: 'Yes', business: 'Yes', premium: 'Yes', custom: 'Yes' },
+    { feature: 'Basic SEO', starter: 'Yes', business: 'Yes', premium: 'Yes', custom: 'Yes' },
+    { feature: 'Delivery Time', starter: '2-3 Days', business: '5-7 Days', premium: '10-12 Days', custom: 'Varies' },
+    { feature: 'Support Duration', starter: '15 Days', business: '1 Month', premium: '3 Months', custom: '6 Months' },
+    { feature: 'Custom Features Availability', starter: 'No', business: 'No', premium: 'Yes (Included)', custom: 'Yes' }
   ];
+
+  const renderMatrixCell = (val) => {
+    if (val === 'Yes' || val === 'Yes (Included)') {
+      return <Check className="h-4 w-4 text-emerald-400 font-bold mx-auto lg:mx-0" />;
+    }
+    if (val === 'No') {
+      return <span className="text-red-500 font-bold">✘</span>;
+    }
+    return <span className="font-sans text-xs text-slate-350">{val}</span>;
+  };
 
   return (
     <div className="pt-28 pb-20 relative overflow-hidden">
       {/* Glow shapes */}
-      <div className="absolute top-[15%] left-[-10%] w-[350px] h-[350px] bg-neon-purple/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-[10%] left-[-10%] w-[350px] h-[350px] bg-neon-purple/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[20%] right-[-10%] w-[350px] h-[350px] bg-neon-blue/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Heading */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <div className="flex flex-col items-center text-center mb-12">
           <span className="text-[10px] uppercase tracking-[0.3em] text-neon-blue font-bold mb-3 block">
             Pricing Plans
           </span>
-          <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tight text-white max-w-3xl leading-tight">
+          <h1 className="text-4xl md:text-5xl font-display font-extrabold tracking-tight text-white max-w-3xl leading-tight">
             Transparent Pricing <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">No Hidden Fees</span>
           </h1>
-          <p className="text-slate-400 text-xs sm:text-base max-w-xl mt-4 leading-relaxed font-sans">
+          <p className="text-slate-400 text-xs sm:text-sm max-w-xl mt-4 leading-relaxed font-sans">
             Choose a plan that fits your business needs, or build a custom solution.
           </p>
-          <div className="w-16 h-[2.5px] bg-gradient-to-r from-neon-blue to-neon-purple mt-6" />
+          <div className="w-16 h-[2.5px] bg-gradient-to-r from-neon-blue to-neon-purple mt-5" />
         </div>
 
-        {/* Standard Packages Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch mb-12">
+        {/* 1. Pricing Plans Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch mb-20">
           {packages.map((pkg, i) => {
             const Icon = pkg.icon;
             return (
               <motion.div
                 key={pkg.name}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="luxury-card p-8 rounded-xl relative flex flex-col justify-between"
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className={`luxury-card p-6 sm:p-8 rounded-2xl relative flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 ${
+                  i === 1
+                    ? 'border-neon-purple/45 shadow-[0_0_40px_rgba(157,78,221,0.15)] hover:shadow-[0_0_50px_rgba(157,78,221,0.25)]'
+                    : 'hover:shadow-[0_0_25px_rgba(0,210,255,0.08)] border-white/5'
+                }`}
               >
                 {pkg.badge && (
-                  <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[9px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10 shadow-lg">
+                  <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[9px] font-mono font-bold uppercase tracking-widest px-3.5 py-1 rounded-full border border-white/10 shadow-lg">
                     {pkg.badge}
                   </div>
                 )}
 
                 <div>
                   <div className="flex items-center gap-3 mb-5 border-b border-white/5 pb-4">
-                    <div className="h-9 w-9 rounded bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                    <div className="h-9 w-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
                       <Icon className={`h-5 w-5 ${pkg.accentColor}`} />
                     </div>
-                    <h3 className="text-white font-display font-bold text-lg">{pkg.name}</h3>
+                    <h3 className="text-white font-display font-bold text-base sm:text-lg">{pkg.name}</h3>
                   </div>
 
                   <div className="flex items-baseline mb-6">
-                    <span className="text-4xl font-display font-black text-white">{pkg.price}</span>
+                    <span className="text-3xl sm:text-4xl font-display font-black text-white">{pkg.price}</span>
                     <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider ml-1.5">/ One-Time</span>
                   </div>
 
-                  <ul className="space-y-3.5 mb-8 text-xs text-slate-400">
-                    {pkg.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2.5">
-                        <div className="h-4.5 w-4.5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className={`h-3 w-3 ${pkg.accentColor}`} />
-                        </div>
-                        <span className="leading-tight text-slate-300">{feature}</span>
+                  <ul className="space-y-3 mb-8 text-xs text-slate-450 font-sans">
+                    {pkg.features.map((feat) => (
+                      <li key={feat} className="flex items-start gap-2">
+                        <Check className={`h-4 w-4 ${pkg.accentColor} flex-shrink-0 mt-0.5`} />
+                        <span>{feat}</span>
                       </li>
                     ))}
                   </ul>
@@ -281,40 +263,36 @@ export default function PackagesPage() {
           })}
         </div>
 
-        {/* Custom Features & Add-ons Section */}
-        <div className="max-w-6xl mx-auto mb-24 relative">
-          <div className="flex flex-col items-center text-center mb-12">
+        {/* 2. Custom Features & Add-ons Section */}
+        <div className="max-w-6xl mx-auto mb-20 relative">
+          <div className="flex flex-col items-center text-center mb-10">
             <span className="text-[10px] uppercase tracking-[0.3em] text-neon-pink font-bold mb-3 block">
               Advanced Add-ons
             </span>
-            <h2 className="text-3xl md:text-4xl font-display font-extrabold tracking-tight text-white">
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-white">
               Custom Features & Add-ons
             </h2>
-            <p className="text-slate-400 text-xs sm:text-sm max-w-2xl mt-3 leading-relaxed font-sans">
+            <p className="text-slate-400 text-xs sm:text-sm max-w-xl mt-3 leading-relaxed font-sans">
               Need advanced functionality? We offer custom development tailored to your business needs. These features are not included in standard website packages and are quoted separately based on project requirements.
             </p>
-            <div className="w-12 h-[2px] bg-gradient-to-r from-neon-blue to-neon-purple mt-4" />
           </div>
 
-          {/* Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            {/* Card 1 */}
+            {/* Add-on 1 */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.05 }}
-              className="luxury-card p-6 rounded-xl relative overflow-hidden flex flex-col justify-between"
+              className="luxury-card p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between hover:shadow-[0_0_20px_rgba(0,210,255,0.05)] hover:-translate-y-1 transition-all duration-300"
             >
               <div className="absolute top-0 left-0 w-full h-[2.5px] bg-neon-blue" />
               <div>
-                <div className="h-10 w-10 rounded border border-white/10 bg-white/5 flex items-center justify-center mb-5">
-                  <CreditCard className="h-5.5 w-5.5 text-neon-blue" />
+                <div className="h-9 w-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center mb-4">
+                  <CreditCard className="h-5 w-5 text-neon-blue" />
                 </div>
-                <h3 className="text-white font-display font-bold text-base mb-1">
-                  Payment Gateway
-                </h3>
-                <span className="text-[10px] font-mono font-bold text-neon-blue uppercase tracking-wider block mb-4">
+                <h3 className="text-white font-display font-bold text-sm mb-0.5">Payment Gateway</h3>
+                <span className="text-[9px] font-mono font-bold text-neon-blue uppercase tracking-wider block mb-3">
                   Starting from ₹3,000
                 </span>
                 <p className="text-slate-400 text-[11px] leading-relaxed font-sans">
@@ -323,23 +301,21 @@ export default function PackagesPage() {
               </div>
             </motion.div>
 
-            {/* Card 2 */}
+            {/* Add-on 2 */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="luxury-card p-6 rounded-xl relative overflow-hidden flex flex-col justify-between"
+              className="luxury-card p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between hover:shadow-[0_0_20px_rgba(138,43,226,0.05)] hover:-translate-y-1 transition-all duration-300"
             >
               <div className="absolute top-0 left-0 w-full h-[2.5px] bg-neon-purple" />
               <div>
-                <div className="h-10 w-10 rounded border border-white/10 bg-white/5 flex items-center justify-center mb-5">
-                  <Settings className="h-5.5 w-5.5 text-neon-purple" />
+                <div className="h-9 w-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center mb-4">
+                  <Settings className="h-5 w-5 text-neon-purple" />
                 </div>
-                <h3 className="text-white font-display font-bold text-base mb-1">
-                  Admin Panel
-                </h3>
-                <span className="text-[10px] font-mono font-bold text-neon-purple uppercase tracking-wider block mb-4">
+                <h3 className="text-white font-display font-bold text-sm mb-0.5">Admin Panel</h3>
+                <span className="text-[9px] font-mono font-bold text-neon-purple uppercase tracking-wider block mb-3">
                   Starting from ₹8,000
                 </span>
                 <p className="text-slate-400 text-[11px] leading-relaxed font-sans">
@@ -348,23 +324,21 @@ export default function PackagesPage() {
               </div>
             </motion.div>
 
-            {/* Card 3 */}
+            {/* Add-on 3 */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.15 }}
-              className="luxury-card p-6 rounded-xl relative overflow-hidden flex flex-col justify-between"
+              className="luxury-card p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between hover:shadow-[0_0_20px_rgba(255,0,127,0.05)] hover:-translate-y-1 transition-all duration-300"
             >
               <div className="absolute top-0 left-0 w-full h-[2.5px] bg-neon-pink" />
               <div>
-                <div className="h-10 w-10 rounded border border-white/10 bg-white/5 flex items-center justify-center mb-5">
-                  <Calendar className="h-5.5 w-5.5 text-neon-pink" />
+                <div className="h-9 w-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center mb-4">
+                  <Calendar className="h-5 w-5 text-neon-pink" />
                 </div>
-                <h3 className="text-white font-display font-bold text-base mb-1">
-                  Booking System
-                </h3>
-                <span className="text-[10px] font-mono font-bold text-neon-pink uppercase tracking-wider block mb-4">
+                <h3 className="text-white font-display font-bold text-sm mb-0.5">Booking System</h3>
+                <span className="text-[9px] font-mono font-bold text-neon-pink uppercase tracking-wider block mb-3">
                   Starting from ₹5,000
                 </span>
                 <p className="text-slate-400 text-[11px] leading-relaxed font-sans">
@@ -373,23 +347,21 @@ export default function PackagesPage() {
               </div>
             </motion.div>
 
-            {/* Card 4 */}
+            {/* Add-on 4 */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.2 }}
-              className="luxury-card p-6 rounded-xl relative overflow-hidden flex flex-col justify-between"
+              className="luxury-card p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between hover:shadow-[0_0_20px_rgba(52,211,153,0.05)] hover:-translate-y-1 transition-all duration-300"
             >
               <div className="absolute top-0 left-0 w-full h-[2.5px] bg-emerald-500" />
               <div>
-                <div className="h-10 w-10 rounded border border-white/10 bg-white/5 flex items-center justify-center mb-5">
-                  <Bot className="h-5.5 w-5.5 text-emerald-400" />
+                <div className="h-9 w-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center mb-4">
+                  <Bot className="h-5 w-5 text-emerald-400" />
                 </div>
-                <h3 className="text-white font-display font-bold text-base mb-1">
-                  AI Chatbot
-                </h3>
-                <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider block mb-4">
+                <h3 className="text-white font-display font-bold text-sm mb-0.5">AI Chatbot</h3>
+                <span className="text-[9px] font-mono font-bold text-emerald-400 uppercase tracking-wider block mb-3">
                   Starting from ₹4,000
                 </span>
                 <p className="text-slate-400 text-[11px] leading-relaxed font-sans">
@@ -399,19 +371,19 @@ export default function PackagesPage() {
             </motion.div>
           </div>
 
-          {/* Highlighted Premium Card Note & CTA */}
+          {/* Highlighted Premium Card Note */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="luxury-card p-6 sm:p-8 rounded-xl relative overflow-hidden bg-gradient-to-r from-neon-blue/5 via-neon-purple/5 to-transparent border-neon-blue/20"
+            className="luxury-card p-5 sm:p-6 rounded-xl relative overflow-hidden bg-gradient-to-r from-neon-blue/5 via-neon-purple/5 to-transparent border-neon-blue/20"
           >
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="max-w-2xl text-center md:text-left">
                 <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-neon-blue block mb-1">
                   Pricing Notice
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                <p className="text-[11px] text-slate-305 leading-relaxed font-sans">
                   Prices shown are starting estimates. Final pricing depends on project requirements, design complexity, and additional functionality.
                 </p>
               </div>
@@ -420,7 +392,7 @@ export default function PackagesPage() {
                 onClick={() => {
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full md:w-auto inline-flex justify-center items-center gap-2 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded hover:shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer flex-shrink-0"
+                className="w-full md:w-auto inline-flex justify-center items-center gap-2 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink text-white text-xs font-bold uppercase tracking-widest px-8 py-3 rounded hover:shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:scale-102 active:scale-98 transition-all duration-300 cursor-pointer flex-shrink-0"
               >
                 Request Custom Quote
                 <ArrowRight className="h-4 w-4" />
@@ -429,50 +401,21 @@ export default function PackagesPage() {
           </motion.div>
         </div>
 
-        {/* Feature Comparison Table */}
-        <div className="max-w-6xl mx-auto mb-24 overflow-x-auto">
-          <h2 className="text-center font-display font-extrabold text-2xl text-white mb-10">
-            Features Comparison Matrix
-          </h2>
-          <table className="w-full text-left border-collapse text-xs sm:text-sm text-slate-300 min-w-[600px] luxury-card rounded-lg overflow-hidden">
-            <thead>
-              <tr className="bg-white/5 text-[10px] font-mono uppercase tracking-wider text-slate-400 border-b border-white/10">
-                <th className="p-4 sm:p-5">Feature</th>
-                <th className="p-4 sm:p-5">Starter</th>
-                <th className="p-4 sm:p-5">Business</th>
-                <th className="p-4 sm:p-5">Premium</th>
-                <th className="p-4 sm:p-5">Custom</th>
-              </tr>
-            </thead>
-            <tbody>
-              {comparison.map((item, idx) => (
-                <tr key={item.feature} className="border-b border-white/5 hover:bg-white/2 transition-colors">
-                  <td className="p-4 font-bold text-white">{item.feature}</td>
-                  <td className="p-4 text-slate-400">{item.starter}</td>
-                  <td className="p-4 text-slate-400">{item.business}</td>
-                  <td className="p-4 text-slate-400">{item.premium}</td>
-                  <td className="p-4 text-slate-400">{item.custom}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Included Free Section */}
+        {/* 3. Included Free With Every Website Section */}
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-6xl mx-auto luxury-card p-8 sm:p-12 rounded-[24px] relative overflow-hidden mb-24 border border-transparent bg-clip-padding before:absolute before:inset-0 before:p-[1.5px] before:bg-gradient-to-r before:from-neon-blue before:via-neon-purple before:to-neon-pink before:rounded-[24px] before:-z-10 before:content-[''] shadow-[0_0_50px_rgba(0,210,255,0.08)] bg-bg-darker/60"
+          className="max-w-6xl mx-auto luxury-card p-8 sm:p-12 rounded-[24px] relative overflow-hidden mb-20 border border-transparent bg-clip-padding before:absolute before:inset-0 before:p-[1.5px] before:bg-gradient-to-r before:from-neon-blue before:via-neon-purple before:to-neon-pink before:rounded-[24px] before:-z-10 before:content-[''] shadow-[0_0_50px_rgba(0,210,255,0.08)] bg-bg-darker/60"
         >
           {/* Spotlight background effect */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-full blur-[100px] pointer-events-none -z-10" />
 
-          {/* Floating animated "100% FREE" badge */}
+          {/* Floating animated badge */}
           <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20">
             <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-widest text-white px-3 py-1.5 rounded-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink shadow-[0_0_15px_rgba(0,210,255,0.4)] animate-pulse">
-              100% FREE
+              🎁 100% FREE
             </span>
           </div>
 
@@ -481,21 +424,21 @@ export default function PackagesPage() {
             <span className="text-[10px] uppercase tracking-[0.3em] text-neon-blue font-bold mb-3 block">
               Value Proposition
             </span>
-            <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-white flex items-center justify-center gap-2">
-              <span>🎁</span> Included Free With Every Website
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-white">
+              Included Free With Every Website
             </h2>
             <p className="text-slate-400 text-xs sm:text-sm max-w-xl mt-3 font-sans leading-relaxed">
-              Every website package includes these premium features at absolutely no extra cost.
+              Every website package includes these premium features at absolutely no additional cost.
             </p>
           </div>
 
           {/* 3x2 Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             {[
-              { title: 'Mobile Responsive', desc: 'Works perfectly on all devices.', icon: Smartphone, color: 'text-neon-blue' },
+              { title: 'Mobile Responsive Design', desc: 'Works perfectly on all devices.', icon: Smartphone, color: 'text-neon-blue' },
               { title: 'WhatsApp Integration', desc: 'Direct chat with your customers.', icon: MessageCircle, color: 'text-emerald-400' },
               { title: 'Contact Form', desc: 'Receive enquiries directly on your email.', icon: Mail, color: 'text-neon-purple' },
-              { title: 'Fast Loading', desc: 'Optimized for speed and performance.', icon: Zap, color: 'text-neon-pink' },
+              { title: 'Fast Loading Performance', desc: 'Optimized for speed and performance.', icon: Zap, color: 'text-neon-pink' },
               { title: 'Basic SEO Setup', desc: 'Ready for search engine indexing.', icon: CheckCircle, color: 'text-neon-blue' },
               { title: 'Free QR Code', desc: 'A custom QR code linked to your website.', icon: QrCode, color: 'text-neon-purple' }
             ].map((feat, i) => {
@@ -507,7 +450,7 @@ export default function PackagesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.05 }}
-                  className="luxury-card p-5 rounded-[20px] border border-white/5 bg-black/30 hover:border-neon-blue/30 transition-all duration-300 flex items-start gap-4 hover:shadow-[0_0_20px_rgba(0,210,255,0.08)] hover:-translate-y-1 min-h-[110px]"
+                  className="luxury-card p-5 rounded-[20px] border border-white/5 bg-black/30 hover:border-neon-blue/30 transition-all duration-300 flex items-start gap-4 hover:shadow-[0_0_20px_rgba(0,210,255,0.08)] hover:-translate-y-1 min-h-[115px]"
                 >
                   <div className="h-9 w-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Icon className={`h-4.5 w-4.5 ${feat.color}`} />
@@ -521,19 +464,19 @@ export default function PackagesPage() {
             })}
           </div>
 
-          {/* Highlighted Banner */}
+          {/* Highlighted Premium Banner */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-5 sm:p-6 rounded-[16px] text-center bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink shadow-[0_0_25px_rgba(0,210,255,0.25)] mb-8 animate-pulse-glow"
+            className="p-5 sm:p-6 rounded-[16px] text-center bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink shadow-[0_0_25px_rgba(0,210,255,0.25)] mb-8"
           >
             <p className="text-white font-sans font-bold text-xs sm:text-sm tracking-wide">
-              ✨ Every website we deliver includes these premium features completely FREE. No hidden charges. No extra setup fees.
+              ✨ Every website we deliver includes these features completely FREE. No hidden charges. No extra setup fees.
             </p>
           </motion.div>
 
-          {/* Trust Badge Row */}
+          {/* Trust Badges */}
           <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-[10px] sm:text-xs font-mono text-slate-500 uppercase tracking-widest">
             <span className="flex items-center gap-1.5 text-emerald-400">
               ✓ <span className="text-slate-400">No Hidden Charges</span>
@@ -550,110 +493,204 @@ export default function PackagesPage() {
           </div>
         </motion.div>
 
-        {/* Website Maintenance Section */}
-        <div className="max-w-6xl mx-auto mb-24">
-          <div className="flex flex-col items-center text-center mb-12">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-neon-pink font-bold mb-3 block">
-              Continuous Care
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-extrabold tracking-tight text-white">
-              Website Maintenance Plans
-            </h2>
-            <p className="text-slate-400 text-xs sm:text-base max-w-xl mt-3 font-sans">
-              Keep your website optimized, secure, and up-to-date with our low-cost monthly plans.
-            </p>
-            <div className="w-12 h-[2px] bg-gradient-to-r from-neon-blue to-neon-purple mt-4" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-16">
-            {/* Basic Maintenance */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="luxury-card p-6 sm:p-8 rounded-xl relative flex flex-col justify-between"
-            >
-              <div>
-                <h3 className="text-white font-display font-bold text-lg mb-2">Monthly Website Maintenance</h3>
-                <div className="flex items-baseline mb-6">
-                  <span className="text-3xl font-display font-black text-white">₹499</span>
-                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider ml-1.5">/ Month</span>
-                </div>
-                <ul className="space-y-3 mb-8 text-xs text-slate-400">
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-blue flex-shrink-0" /> Website Health Check</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-blue flex-shrink-0" /> Monthly Content Updates</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-blue flex-shrink-0" /> Bug Fixes</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-blue flex-shrink-0" /> Basic Technical Support</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-blue flex-shrink-0" /> Backup Assistance</li>
-                </ul>
-              </div>
-              <Link
-                to="/contact"
-                state={{ selectedContext: 'Monthly Website Maintenance (₹499/Mo)', message: 'Hello Shubham, I would like to get started with the Monthly Website Maintenance plan (₹499/Mo) for my business.' }}
-                className="w-full py-3 bg-gradient-to-r from-neon-blue/15 to-neon-purple/15 hover:from-neon-blue/30 hover:to-neon-purple/30 border border-neon-blue/30 text-white text-xs font-bold uppercase tracking-widest rounded text-center transition-all duration-300 cursor-pointer"
-              >
-                GET MAINTENANCE PLAN
-              </Link>
-            </motion.div>
-
-            {/* Premium Maintenance */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="luxury-card p-6 sm:p-8 rounded-xl relative flex flex-col justify-between border-neon-purple/20"
-            >
-              <div>
-                <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[9px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10 shadow-lg">
-                  Recommended
-                </div>
-                <h3 className="text-white font-display font-bold text-lg mb-2">Premium Website Maintenance</h3>
-                <div className="flex items-baseline mb-6">
-                  <span className="text-3xl font-display font-black text-white">₹999</span>
-                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider ml-1.5">/ Month</span>
-                </div>
-                <ul className="space-y-3 mb-8 text-xs text-slate-400">
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Everything in Basic</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Priority Support</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Unlimited Minor Updates</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Security Monitoring</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Performance Optimization</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Monthly Website Review</li>
-                </ul>
-              </div>
-              <Link
-                to="/contact"
-                state={{ selectedContext: 'Premium Website Maintenance (₹999/Mo)', message: 'Hello Shubham, I would like to get started with the Premium Website Maintenance plan (₹999/Mo) for my business.' }}
-                className="w-full py-3 bg-gradient-to-r from-neon-blue to-neon-purple hover:shadow-[0_0_20px_rgba(0,210,255,0.3)] text-white text-xs font-bold uppercase tracking-widest rounded text-center transition-all duration-300 cursor-pointer"
-              >
-                CONTACT NOW
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* Final Message Note */}
-          <div className="max-w-3xl mx-auto text-center p-6 border-t border-white/5 mt-8">
-            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed italic font-sans max-w-2xl mx-auto">
-              "We don't just build websites—we support your business even after launch. Every project includes free support based on the selected package, ensuring your website continues to perform smoothly."
-            </p>
-          </div>
+        {/* 4. Feature Comparison Matrix */}
+        <div className="max-w-6xl mx-auto mb-20 overflow-x-auto">
+          <h2 className="text-center font-display font-extrabold text-2xl text-white mb-10">
+            Features Comparison Matrix
+          </h2>
+          <table className="w-full text-left border-collapse text-xs sm:text-sm text-slate-350 min-w-[600px] luxury-card rounded-lg overflow-hidden">
+            <thead>
+              <tr className="bg-white/5 text-[10px] font-mono uppercase tracking-wider text-slate-450 border-b border-white/10">
+                <th className="p-4 sm:p-5">Feature</th>
+                <th className="p-4 sm:p-5">Starter</th>
+                <th className="p-4 sm:p-5">Business</th>
+                <th className="p-4 sm:p-5">Premium</th>
+                <th className="p-4 sm:p-5">Custom</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparison.map((item, idx) => (
+                <tr key={item.feature} className="border-b border-white/5 hover:bg-white/2 transition-colors">
+                  <td className="p-4 font-bold text-white">{item.feature}</td>
+                  <td className="p-4 text-center lg:text-left">{renderMatrixCell(item.starter)}</td>
+                  <td className="p-4 text-center lg:text-left">{renderMatrixCell(item.business)}</td>
+                  <td className="p-4 text-center lg:text-left">{renderMatrixCell(item.premium)}</td>
+                  <td className="p-4 text-center lg:text-left">{renderMatrixCell(item.custom)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
-        {/* Client Process Timeline */}
-        <div className="max-w-5xl mx-auto mb-24">
-          <h2 className="text-center font-display font-extrabold text-2xl text-white mb-12">
+        {/* 5. Website Maintenance & Support (Single Premium Timeline Section) */}
+        <div className="max-w-5xl mx-auto mb-20 relative">
+          <div className="flex flex-col items-center text-center mb-10">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-neon-pink font-bold mb-3 block">
+              Support Policy
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-white">
+              Website Maintenance & Support
+            </h2>
+            <p className="text-slate-400 text-xs sm:text-sm max-w-xl mt-3 font-sans leading-relaxed">
+              Every package includes complimentary post-delivery maintenance to keep your website running smoothly.
+            </p>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="luxury-card p-6 sm:p-10 rounded-2xl relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 via-transparent to-transparent pointer-events-none" />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              {/* Left Column: Support Timeline */}
+              <div className="lg:col-span-6 space-y-6">
+                <h4 className="text-xs font-mono font-bold text-neon-blue uppercase tracking-widest mb-4">
+                  Free Support Duration
+                </h4>
+                
+                <div className="relative pl-6 border-l border-white/10 space-y-6">
+                  {/* Timeline Node 1 */}
+                  <div className="relative">
+                    <div className="absolute -left-[30px] top-1.5 h-4 w-4 rounded-full bg-neon-blue border-2 border-bg-dark flex items-center justify-center shadow-[0_0_10px_rgba(0,210,255,0.8)]" />
+                    <h5 className="text-white font-display font-bold text-sm">Starter Website</h5>
+                    <p className="text-neon-blue font-mono text-[10px] uppercase tracking-wider mt-0.5">15 Days Support Included</p>
+                  </div>
+
+                  {/* Timeline Node 2 */}
+                  <div className="relative">
+                    <div className="absolute -left-[30px] top-1.5 h-4 w-4 rounded-full bg-neon-purple border-2 border-bg-dark flex items-center justify-center shadow-[0_0_10px_rgba(157,78,221,0.8)]" />
+                    <h5 className="text-white font-display font-bold text-sm">Business Website</h5>
+                    <p className="text-neon-purple font-mono text-[10px] uppercase tracking-wider mt-0.5">1 Month Support Included</p>
+                  </div>
+
+                  {/* Timeline Node 3 */}
+                  <div className="relative">
+                    <div className="absolute -left-[30px] top-1.5 h-4 w-4 rounded-full bg-neon-pink border-2 border-bg-dark flex items-center justify-center shadow-[0_0_10px_rgba(255,0,127,0.8)]" />
+                    <h5 className="text-white font-display font-bold text-sm">Premium Website</h5>
+                    <p className="text-neon-pink font-mono text-[10px] uppercase tracking-wider mt-0.5">3 Months Support Included</p>
+                  </div>
+
+                  {/* Timeline Node 4 */}
+                  <div className="relative">
+                    <div className="absolute -left-[30px] top-1.5 h-4 w-4 rounded-full bg-emerald-400 border-2 border-bg-dark flex items-center justify-center shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
+                    <h5 className="text-white font-display font-bold text-sm">Custom Solutions</h5>
+                    <p className="text-emerald-400 font-mono text-[10px] uppercase tracking-wider mt-0.5">6 Months Support Included</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Support Scope */}
+              <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6 border-t lg:border-t-0 lg:border-l border-white/5 pt-6 lg:pt-0 lg:pl-8">
+                {/* Included */}
+                <div>
+                  <h4 className="text-emerald-400 font-mono text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-1.5">
+                    <span>✓</span> Support Includes:
+                  </h4>
+                  <ul className="space-y-2.5 text-xs text-slate-350 font-sans">
+                    <li className="flex items-center gap-2">✓ Bug Fixes</li>
+                    <li className="flex items-center gap-2">✓ Content Updates</li>
+                    <li className="flex items-center gap-2">✓ Minor Design Adjustments</li>
+                  </ul>
+                </div>
+
+                {/* Not Included */}
+                <div>
+                  <h4 className="text-neon-pink font-mono text-xs uppercase tracking-widest font-bold mb-3 flex items-center gap-1.5">
+                    <span>✗</span> Support Does NOT Include:
+                  </h4>
+                  <ul className="space-y-2.5 text-xs text-slate-450 font-sans">
+                    <li className="flex items-center gap-2 text-slate-500">✗ New Pages</li>
+                    <li className="flex items-center gap-2 text-slate-500">✗ New Features</li>
+                    <li className="flex items-center gap-2 text-slate-500">✗ Major Redesign</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+        </div>
+
+        {/* 6. Our Collaboration Process (Horizontal Timeline) */}
+        <div className="max-w-6xl mx-auto mb-20 relative z-10">
+          <h2 className="text-center font-display font-extrabold text-2xl md:text-3xl text-white mb-12">
             Our Collaboration Process
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {steps.map((step, i) => (
-              <div key={step.title} className="luxury-card p-6 rounded-xl relative">
-                <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-neon-blue to-neon-purple opacity-70" />
-                <h3 className="text-white font-display font-bold text-sm sm:text-base mb-2">{step.title}</h3>
-                <p className="text-slate-400 text-xs leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
+          
+          <div className="relative">
+            {/* Horizontal Connecting Line for Desktop */}
+            <div className="absolute top-[28px] left-8 right-8 h-[1px] bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink -z-10 hidden lg:block opacity-40" />
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {[
+                { step: '1', title: 'Discussion', emoji: '📞', desc: 'Requirements alignment' },
+                { step: '2', title: 'Planning', emoji: '📝', desc: 'Design sitemap' },
+                { step: '3', title: 'UI Design', emoji: '🎨', desc: 'Visual mockups' },
+                { step: '4', title: 'Development', emoji: '💻', desc: 'Writing premium code' },
+                { step: '5', title: 'Testing', emoji: '🧪', desc: 'Optimization & audit' },
+                { step: '6', title: 'Launch', emoji: '🚀', desc: 'Hosting & domain live' }
+              ].map((step, i) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                  className="luxury-card p-5 rounded-2xl relative text-center flex flex-col items-center hover:border-neon-blue/30 transition-all duration-300 hover:-translate-y-1"
+                >
+                  {/* Step Badge */}
+                  <div className="h-7 w-7 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple text-white text-[10px] font-mono font-bold flex items-center justify-center shadow-[0_0_10px_rgba(0,210,255,0.4)] mb-3">
+                    {step.step}
+                  </div>
+                  
+                  <span className="text-2xl mb-2.5 block">{step.emoji}</span>
+                  <h3 className="text-white font-display font-bold text-xs sm:text-sm mb-1">{step.title}</h3>
+                  <p className="text-slate-500 text-[10px] font-sans leading-normal">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
+
+        {/* 7. Request Custom Quote (Final CTA banner + Contact form below it) */}
+        <div className="max-w-4xl mx-auto mb-16 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="luxury-card p-8 sm:p-10 rounded-2xl relative overflow-hidden bg-gradient-to-br from-neon-blue/8 via-neon-purple/5 to-neon-pink/10 border-neon-purple/20 shadow-[0_0_30px_rgba(157,78,221,0.1)]"
+          >
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white mb-4">
+              Let's Build Something Amazing Together
+            </h2>
+            <p className="text-slate-300 text-xs sm:text-sm max-w-md mx-auto mb-8 leading-relaxed font-sans">
+              Get in touch to receive a personalized quote or consult about your advanced business website requirements.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-neon-pink to-neon-purple text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded hover:shadow-[0_0_20px_rgba(255,0,127,0.35)] transition-all duration-300 cursor-pointer"
+              >
+                Request Custom Quote
+                <ArrowRight className="h-4 w-4" />
+              </button>
+              <a
+                href={agencyConfig.contacts.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/5 border border-white/10 hover:border-emerald-500 hover:bg-emerald-500/10 text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded transition-all duration-300 cursor-pointer"
+              >
+                <MessageCircle className="h-4 w-4 text-emerald-400" />
+                WhatsApp Us
+              </a>
+            </div>
+          </motion.div>
+        </div>
+
         {/* Contact / Custom Quote Request Section */}
         <div id="contact" className="max-w-4xl mx-auto mb-24 pt-12">
           <div className="flex flex-col items-center text-center mb-10">

@@ -19,17 +19,7 @@ import ContactPage from './pages/ContactPage';
 import QuotePage from './pages/QuotePage';
 import FaqPage from './pages/FaqPage';
 
-// Mounting redirect helper to always start on home `/` on fresh session
-function HomeRedirect() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!window.__hasRedirected) {
-      window.__hasRedirected = true;
-      navigate('/', { replace: true });
-    }
-  }, [navigate]);
-  return null;
-}
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -52,8 +42,7 @@ function App() {
               {/* Scroll Position Reset */}
               <ScrollToTop />
 
-              {/* Home Redirect Mount */}
-              <HomeRedirect />
+
 
               {/* Navigation Header */}
               <Navbar />

@@ -249,6 +249,233 @@ export default function PackagesPage() {
           </table>
         </div>
 
+        {/* Free Support Section */}
+        <div className="max-w-6xl mx-auto mb-24">
+          <div className="flex flex-col items-center text-center mb-12">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-neon-blue font-bold mb-3 block">
+              Complimentary Policy
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-extrabold tracking-tight text-white">
+              Free Support Included With Every Website
+            </h2>
+            <p className="text-slate-400 text-xs sm:text-base max-w-xl mt-3 font-sans">
+              Every website includes complimentary post-delivery support to ensure everything runs smoothly.
+            </p>
+            <div className="w-12 h-[2px] bg-gradient-to-r from-neon-blue to-neon-purple mt-4" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {/* Starter Support */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="luxury-card p-6 rounded-xl relative flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[9px] font-mono text-neon-blue uppercase tracking-widest block mb-1">Starter Website</span>
+                <h3 className="text-white font-display font-extrabold text-xl mb-3">15 Days Support</h3>
+                <ul className="space-y-2 text-[11px] text-slate-400 font-sans">
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-blue" /> Bug Fixes</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-blue" /> Text Updates</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-blue" /> Image Replacement</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-blue" /> Contact Details Update</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-blue" /> WhatsApp Link Update</li>
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Business Support */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="luxury-card p-6 rounded-xl relative flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[9px] font-mono text-neon-purple uppercase tracking-widest block mb-1">Business Website</span>
+                <h3 className="text-white font-display font-extrabold text-xl mb-3">1 Month Support</h3>
+                <ul className="space-y-2 text-[11px] text-slate-400 font-sans">
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-purple" /> Everything in Starter</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-purple" /> Minor Content Updates</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-purple" /> Minor Design Adjustments</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-purple" /> Technical Assistance</li>
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Premium Support */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="luxury-card p-6 rounded-xl relative flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[9px] font-mono text-neon-pink uppercase tracking-widest block mb-1">Premium Website</span>
+                <h3 className="text-white font-display font-extrabold text-xl mb-3">3 Months Support</h3>
+                <ul className="space-y-2 text-[11px] text-slate-400 font-sans">
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-pink" /> Priority Support</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-pink" /> Bug Fixes</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-pink" /> Content Updates</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-pink" /> Minor UI Improvements</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-neon-pink" /> Technical Assistance</li>
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Custom Support */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="luxury-card p-6 rounded-xl relative flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[9px] font-mono text-emerald-400 uppercase tracking-widest block mb-1">Custom Business</span>
+                <h3 className="text-white font-display font-extrabold text-xl mb-3">6 Months Support</h3>
+                <ul className="space-y-2 text-[11px] text-slate-400 font-sans">
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Priority Support</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Technical Assistance</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Bug Fixes</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Content Updates</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Minor Improvements</li>
+                  <li className="flex items-center gap-2"><Check className="h-3 w-3 text-emerald-400" /> Business Guidance</li>
+                </ul>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Important Notice Glass Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="luxury-card p-6 sm:p-10 rounded-xl relative overflow-hidden mb-12"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 via-transparent to-transparent pointer-events-none" />
+            <h3 className="text-white font-display font-extrabold text-lg mb-6 border-b border-white/5 pb-3">Important Notice: Support Boundaries</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-emerald-400 font-mono text-xs uppercase tracking-widest font-bold mb-3">Support Includes:</h4>
+                <ul className="space-y-2 text-xs text-slate-300 font-sans">
+                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Bug Fixes</li>
+                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Content Updates</li>
+                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Image Replacement</li>
+                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Contact Information Changes</li>
+                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> WhatsApp Number Changes</li>
+                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Email Address Changes</li>
+                  <li className="flex items-start gap-2"><Check className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" /> Minor Layout Adjustments</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-neon-pink font-mono text-xs uppercase tracking-widest font-bold mb-3">Support Does NOT Include:</h4>
+                <ul className="space-y-2 text-xs text-slate-400 font-sans">
+                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> New Pages</li>
+                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> Complete Website Redesign</li>
+                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> Payment Gateway Added Later</li>
+                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> Admin Panel Development</li>
+                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> Large Feature Requests</li>
+                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> Major Design Changes</li>
+                  <li className="flex items-start gap-2"><span className="text-neon-pink font-bold flex-shrink-0 leading-none">✘</span> New Custom Modules</li>
+                </ul>
+                <p className="text-[10px] text-slate-500 font-mono mt-4 italic">
+                  Note: These unsupported services require a separate custom quotation.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Website Maintenance Section */}
+        <div className="max-w-6xl mx-auto mb-24">
+          <div className="flex flex-col items-center text-center mb-12">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-neon-pink font-bold mb-3 block">
+              Continuous Care
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-extrabold tracking-tight text-white">
+              Website Maintenance Plans
+            </h2>
+            <p className="text-slate-400 text-xs sm:text-base max-w-xl mt-3 font-sans">
+              Keep your website optimized, secure, and up-to-date with our low-cost monthly plans.
+            </p>
+            <div className="w-12 h-[2px] bg-gradient-to-r from-neon-blue to-neon-purple mt-4" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-16">
+            {/* Basic Maintenance */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="luxury-card p-6 sm:p-8 rounded-xl relative flex flex-col justify-between"
+            >
+              <div>
+                <h3 className="text-white font-display font-bold text-lg mb-2">Monthly Website Maintenance</h3>
+                <div className="flex items-baseline mb-6">
+                  <span className="text-3xl font-display font-black text-white">₹499</span>
+                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider ml-1.5">/ Month</span>
+                </div>
+                <ul className="space-y-3 mb-8 text-xs text-slate-400">
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-blue flex-shrink-0" /> Website Health Check</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-blue flex-shrink-0" /> Monthly Content Updates</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-blue flex-shrink-0" /> Bug Fixes</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-blue flex-shrink-0" /> Basic Technical Support</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-blue flex-shrink-0" /> Backup Assistance</li>
+                </ul>
+              </div>
+              <Link
+                to="/contact"
+                state={{ selectedContext: 'Monthly Website Maintenance (₹499/Mo)', message: 'Hello Shubham, I would like to get started with the Monthly Website Maintenance plan (₹499/Mo) for my business.' }}
+                className="w-full py-3 bg-gradient-to-r from-neon-blue/15 to-neon-purple/15 hover:from-neon-blue/30 hover:to-neon-purple/30 border border-neon-blue/30 text-white text-xs font-bold uppercase tracking-widest rounded text-center transition-all duration-300 cursor-pointer"
+              >
+                GET MAINTENANCE PLAN
+              </Link>
+            </motion.div>
+
+            {/* Premium Maintenance */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="luxury-card p-6 sm:p-8 rounded-xl relative flex flex-col justify-between border-neon-purple/20"
+            >
+              <div>
+                <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[9px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10 shadow-lg">
+                  Recommended
+                </div>
+                <h3 className="text-white font-display font-bold text-lg mb-2">Premium Website Maintenance</h3>
+                <div className="flex items-baseline mb-6">
+                  <span className="text-3xl font-display font-black text-white">₹999</span>
+                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider ml-1.5">/ Month</span>
+                </div>
+                <ul className="space-y-3 mb-8 text-xs text-slate-400">
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Everything in Basic</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Priority Support</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Unlimited Minor Updates</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Security Monitoring</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Performance Optimization</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-neon-purple flex-shrink-0" /> Monthly Website Review</li>
+                </ul>
+              </div>
+              <Link
+                to="/contact"
+                state={{ selectedContext: 'Premium Website Maintenance (₹999/Mo)', message: 'Hello Shubham, I would like to get started with the Premium Website Maintenance plan (₹999/Mo) for my business.' }}
+                className="w-full py-3 bg-gradient-to-r from-neon-blue to-neon-purple hover:shadow-[0_0_20px_rgba(0,210,255,0.3)] text-white text-xs font-bold uppercase tracking-widest rounded text-center transition-all duration-300 cursor-pointer"
+              >
+                CONTACT NOW
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Final Message Note */}
+          <div className="max-w-3xl mx-auto text-center p-6 border-t border-white/5 mt-8">
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed italic font-sans max-w-2xl mx-auto">
+              "We don't just build websites—we support your business even after launch. Every project includes free support based on the selected package, ensuring your website continues to perform smoothly."
+            </p>
+          </div>
+        </div>
+
         {/* Client Process Timeline */}
         <div className="max-w-5xl mx-auto mb-24">
           <h2 className="text-center font-display font-extrabold text-2xl text-white mb-12">

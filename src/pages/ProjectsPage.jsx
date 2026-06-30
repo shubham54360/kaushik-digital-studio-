@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { agencyConfig } from '../config/agency';
+import { trackProjectVisit } from '../utils/analytics';
 
 export default function ProjectsPage() {
   return (
@@ -82,6 +83,7 @@ export default function ProjectsPage() {
                   href={proj.webLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackProjectVisit(proj.name)}
                   className="w-full py-3 text-center bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 hover:from-neon-blue/35 hover:to-neon-purple/35 border border-neon-blue/35 hover:border-neon-blue/60 rounded text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer hover:shadow-[0_0_15px_rgba(0,240,255,0.25)]"
                 >
                   <ExternalLink className="h-3.5 w-3.5 text-neon-blue" />

@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import FloatingActions from './components/FloatingActions';
+import AnalyticsTracker from './components/AnalyticsTracker';
 
 // Pages
 import Home from './pages/Home';
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <AnalyticsTracker />
       <div className="relative bg-bg-darker min-h-screen text-slate-200 overflow-x-hidden">
         {/* Global Futuristic Scanline Overlay */}
         <div className="fixed inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.12)_50%)] bg-[length:100%_4px] pointer-events-none z-30 opacity-30" />

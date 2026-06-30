@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { MessageCircle, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { agencyConfig } from '../config/agency';
+import { trackDemoEnquiry } from '../utils/analytics';
 
 export default function SpecialOffer() {
   const whatsappOfferLink = `https://wa.me/91${agencyConfig.contacts.whatsappNum}?text=Hello%20Shubham,%20I%20would%20like%20to%20get%20a%20%E2%82%B999%20website%20preview%20for%20my%20business.`;
@@ -48,6 +49,7 @@ export default function SpecialOffer() {
               href={whatsappOfferLink}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackDemoEnquiry('whatsapp')}
               className="w-full py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-xs font-bold uppercase tracking-widest rounded hover:shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:scale-102 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
             >
               <MessageCircle className="h-4 w-4" />
@@ -56,6 +58,7 @@ export default function SpecialOffer() {
             <Link
               to="/contact"
               state={{ selectedContext: '₹99 Website Preview', message: 'Hello Shubham, I would like to learn more about the ₹99 website homepage preview service.' }}
+              onClick={() => trackDemoEnquiry('contact_page')}
               className="w-full py-3 bg-white/5 border border-white/10 hover:border-neon-purple text-white text-xs font-bold uppercase tracking-widest rounded hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-1"
             >
               Learn More

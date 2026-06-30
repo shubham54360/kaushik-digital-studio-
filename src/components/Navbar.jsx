@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { agencyConfig } from '../config/agency';
 import logoImg from '../assets/logo.png';
+import { trackNavClick, trackButtonClick } from '../utils/analytics';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,6 +63,7 @@ export default function Navbar() {
               <li key={link.name}>
                 <NavLink
                   to={link.path}
+                  onClick={() => trackNavClick(link.name)}
                   className={({ isActive }) =>
                     `font-sans text-[10px] uppercase tracking-widest transition-colors duration-300 font-semibold ${
                       isActive ? 'text-neon-blue font-bold' : 'text-slate-300 hover:text-neon-blue'
@@ -77,6 +79,7 @@ export default function Navbar() {
           <Link
             to="/contact"
             state={{ selectedContext: 'Start Custom Website Project', message: 'Hello Shubham, I would like to start a custom website project for my business.' }}
+            onClick={() => trackButtonClick('start_project_nav', 'Navbar')}
             className="flex items-center gap-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[10px] font-bold uppercase tracking-wider px-4 py-2.5 rounded hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all duration-300 group"
           >
             Start Project
@@ -108,7 +111,10 @@ export default function Navbar() {
                 <li key={link.name}>
                   <NavLink
                     to={link.path}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      trackNavClick(link.name);
+                    }}
                     className={({ isActive }) =>
                       `block font-sans text-xs font-semibold uppercase tracking-wider py-2 border-b border-white/5 transition-colors duration-300 ${
                         isActive ? 'text-neon-blue font-bold' : 'text-slate-300 hover:text-neon-blue'
@@ -123,7 +129,10 @@ export default function Navbar() {
                 <Link
                   to="/contact"
                   state={{ selectedContext: 'Start Custom Website Project', message: 'Hello Shubham, I would like to start a custom website project for my business.' }}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => {
+                    setIsOpen(false);
+                    trackButtonClick('start_project_nav_mobile', 'Navbar');
+                  }}
                   className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-[10px] font-bold uppercase py-3 rounded hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all duration-300"
                 >
                   Start Project

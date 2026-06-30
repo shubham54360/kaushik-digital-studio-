@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, Check, Calculator, Send } from 'lucide-react';
+import { trackEvent } from '../utils/analytics';
 
 const businessTypes = [
   { id: 'business', label: 'Business Website', basePrice: 1999 },
@@ -82,6 +83,11 @@ export default function QuotePage() {
   };
 
   const handleWhatsAppQuote = () => {
+    trackEvent('quote_calculator_submit', {
+      method: 'whatsapp',
+      estimated_price: estimatedPrice,
+      business_type: selectedBusiness.label,
+    });
     const summary = getFormSummaryText();
     const message = `Hello Shubham,\n\nI have configured my website requirements using your Quote Calculator.\n\n*Configuration details:*\n- ${summary}\n\nPlease send me the final quotation.`;
     const encoded = encodeURIComponent(message);
@@ -89,6 +95,11 @@ export default function QuotePage() {
   };
 
   const handleEmailQuote = () => {
+    trackEvent('quote_calculator_submit', {
+      method: 'email',
+      estimated_price: estimatedPrice,
+      business_type: selectedBusiness.label,
+    });
     const summary = getFormSummaryText();
     navigate('/contact', {
       state: {

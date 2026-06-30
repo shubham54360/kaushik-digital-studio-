@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, Mail, Send, CheckCircle, Loader2, Phone, Clock } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { agencyConfig } from '../config/agency';
+import { trackContactForm } from '../utils/analytics';
 
 export default function ContactPage() {
   const location = useLocation();
@@ -94,6 +95,7 @@ export default function ContactPage() {
       setTimeout(() => {
         setLoading(false);
         setSuccess(true);
+        trackContactForm('submit_success', 'general');
         resetForm();
       }, 1500);
     } else {
@@ -102,11 +104,13 @@ export default function ContactPage() {
         .then(() => {
           setLoading(false);
           setSuccess(true);
+          trackContactForm('submit_success', 'general');
           resetForm();
         })
         .catch((error) => {
           setLoading(false);
           console.error('EmailJS send error:', error);
+          trackContactForm('submit_failure', 'general');
           setErrors({ form: 'Failed to send inquiry. Please email directly or try WhatsApp.' });
         });
     }

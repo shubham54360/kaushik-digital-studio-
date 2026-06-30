@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import shubhamPortrait from '../assets/shubham_portrait.png';
 import { agencyConfig } from '../config/agency';
 import SpecialOffer from '../components/SpecialOffer';
+import { trackButtonClick } from '../utils/analytics';
 
 export default function Home() {
   const stats = [
@@ -63,6 +64,7 @@ export default function Home() {
           >
             <Link
               to="/contact"
+              onClick={() => trackButtonClick('start_project_hero', 'Home')}
               className="px-5 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-white text-xs font-bold uppercase tracking-wider rounded hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all duration-300 flex items-center gap-2 group"
             >
               Start Project
@@ -71,6 +73,7 @@ export default function Home() {
 
             <Link
               to="/projects"
+              onClick={() => trackButtonClick('view_projects_hero', 'Home')}
               className="px-5 py-3 bg-white/5 border border-white/10 hover:border-neon-purple/50 text-white text-xs font-bold uppercase tracking-wider rounded hover:bg-white/10 transition-all duration-300 flex items-center gap-2"
             >
               View Projects
@@ -342,6 +345,7 @@ export default function Home() {
             <Link
               to="/contact"
               state={{ selectedContext: '15 Min Free Consultation', message: 'Hello Shubham, I would like to book a 15-minute free Strategy Session to discuss a website for my business.' }}
+              onClick={() => trackButtonClick('book_free_session_cta', 'Home')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-neon-purple to-neon-pink text-white text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded hover:shadow-[0_0_25px_rgba(138,43,226,0.35)] transition-all duration-300 cursor-pointer"
             >
               Book Free Session

@@ -4,6 +4,7 @@ import { Check, HelpCircle, ArrowRight, Layers, Box, Cpu, ChevronDown, CheckCirc
 import { Link } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import { agencyConfig } from '../config/agency';
+import { trackPackageSelection, trackContactForm } from '../utils/analytics';
 
 export default function PackagesPage() {
   // Form State for Custom Quote Request
@@ -78,6 +79,7 @@ export default function PackagesPage() {
       setTimeout(() => {
         setLoading(false);
         setSuccess(true);
+        trackContactForm('submit_success', 'custom_quote');
         resetForm();
       }, 1500);
     } else {
@@ -85,11 +87,13 @@ export default function PackagesPage() {
         .then(() => {
           setLoading(false);
           setSuccess(true);
+          trackContactForm('submit_success', 'custom_quote');
           resetForm();
         })
         .catch((error) => {
           setLoading(false);
           console.error('EmailJS send error:', error);
+          trackContactForm('submit_failure', 'custom_quote');
           setErrors({ form: 'Failed to send inquiry. Please try again or WhatsApp us.' });
         });
     }
@@ -317,6 +321,7 @@ export default function PackagesPage() {
                 {pkg.isCustom ? (
                   <button
                     onClick={() => {
+                      trackPackageSelection(pkg.name, pkg.price);
                       document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                     }}
                     className="w-full py-3 bg-gradient-to-r from-neon-purple via-neon-purple to-neon-pink hover:shadow-[0_0_20px_rgba(138,43,226,0.35)] text-white text-xs font-bold uppercase tracking-widest rounded text-center transition-all duration-300 cursor-pointer hover:scale-102 active:scale-98"
@@ -327,6 +332,7 @@ export default function PackagesPage() {
                   <Link
                     to="/contact"
                     state={{ selectedContext: `${pkg.name} (${pkg.price})`, message: `Hello Shubham, I would like to order the ${pkg.name} package (${pkg.price}) for my business.` }}
+                    onClick={() => trackPackageSelection(pkg.name, pkg.price)}
                     className={`w-full py-3 text-xs font-bold uppercase tracking-widest rounded text-center transition-all duration-300 hover:scale-102 active:scale-98 ${
                       pkg.highlight
                         ? 'bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink hover:shadow-[0_0_20px_rgba(138,43,226,0.35)] text-white'
